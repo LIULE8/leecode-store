@@ -4,12 +4,12 @@ import com.leo.utils.Printer;
 
 public class RotateArray {
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
-        new Solution().rotate(nums, 3);
-//        int[] nums = new int[]{-1,-100,3,99};
-//        new Solution().rotate(nums,2);
-//        int[] nums = new int[]{1,2};
-//        new Solution().rotate(nums,3);
+//        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+//        new Solution().rotate(nums, 3);
+        int[] nums = new int[]{-1, -100, 3, 99}; // 3,99,-1,-100
+        new Solution().rotate(nums, 2);
+//        int[] nums = new int[]{1, 2}; // 2,1
+//        new Solution().rotate(nums, 3);
         Printer.printArray(nums);
     }
 
@@ -43,24 +43,6 @@ public class RotateArray {
      */
     static class Solution {
         public void rotate(int[] nums, int k) {
-//            method1(nums, k);
-            method2(nums, k);
-        }
-
-        private void method1(int[] nums, int k) {
-            if (nums == null || nums.length == 1) {
-                return;
-            }
-            for (int i = 0; i < k; i++) {
-                for (int j = nums.length - 1; j > 0; j--) {
-                    int temp = nums[j];
-                    nums[j] = nums[j - 1];
-                    nums[j - 1] = temp;
-                }
-            }
-        }
-
-        private void method2(int[] nums, int k) {
             if (nums == null || nums.length == 1) {
                 return;
             }
