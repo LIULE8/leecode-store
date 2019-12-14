@@ -27,15 +27,29 @@ import java.util.Arrays;
  */
 public class MergeSortedArray {
     public static void main(String[] args) {
-        int[] nums1 = new int[] {1,2,3,0,0,0};
-        int[] nums2 = new int[] {2,5,6};
-        new Solution().merge(nums1,3,nums2,3);
+//        int[] nums1 = new int[]{1, 2, 3, 0, 0, 0};
+//        int[] nums2 = new int[]{2, 5, 6};
+//        new Solution().merge(nums1, 3, nums2, 3);
+        int[] nums1 = new int[]{0};
+        int[] nums2 = new int[]{1};
+        new Solution().merge(nums1, 0, nums2, 1);
         Printer.printArray(nums1);
     }
 
     static class Solution {
         public void merge(int[] nums1, int m, int[] nums2, int n) {
-            method1(nums1, m, nums2, n);
+//            method1(nums1, m, nums2, n);
+            method2(nums1, m, nums2, n);
+        }
+
+        private void method2(int[] nums1, int m, int[] nums2, int n) {
+            int i = m-- + --n;
+            while (m >= 0 && n >= 0) {
+                nums1[i--] = nums1[m] > nums2[n] ? nums1[m--] : nums2[n--];
+            }
+            while (n >= 0) {
+                nums1[i--] = nums2[n--];
+            }
         }
 
         private void method1(int[] nums1, int m, int[] nums2, int n) {
