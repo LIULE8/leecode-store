@@ -1,5 +1,6 @@
 package com.leo.easy;
 
+import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ import java.util.Map;
  */
 public class TwoSum {
     public static void main(String[] args) {
-        int[] nums = new int[]{2, 7, 11, 15};
+        int[] nums = DataBuilder.buildIntArray("2,7,11,15");
         int[] result = new Solution().twoSum(nums, 9);
         Printer.printArray(result);
     }

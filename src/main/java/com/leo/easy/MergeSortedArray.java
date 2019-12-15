@@ -1,5 +1,6 @@
 package com.leo.easy;
 
+import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
 import java.util.Arrays;
@@ -27,12 +28,12 @@ import java.util.Arrays;
  */
 public class MergeSortedArray {
     public static void main(String[] args) {
-//        int[] nums1 = new int[]{1, 2, 3, 0, 0, 0};
-//        int[] nums2 = new int[]{2, 5, 6};
-//        new Solution().merge(nums1, 3, nums2, 3);
-        int[] nums1 = new int[]{0};
-        int[] nums2 = new int[]{1};
-        new Solution().merge(nums1, 0, nums2, 1);
+        int[] nums1 = DataBuilder.buildIntArray("1,2,3,0,0,0");
+        int[] nums2 = DataBuilder.buildIntArray("2,5,6");
+        new Solution().merge(nums1, 3, nums2, 3);
+//        int[] nums1 = DataBuilder.buildIntArray("0");
+//        int[] nums2 = DataBuilder.buildIntArray("1");
+//        new Solution().merge(nums1, 0, nums2, 1);
         Printer.printArray(nums1);
     }
 

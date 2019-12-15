@@ -1,5 +1,6 @@
 package com.leo.easy;
 
+import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
 
@@ -48,11 +49,11 @@ import com.leo.utils.Printer;
 public class RemoveDuplicatesFromSortedArray {
 
     public static void main(String[] args) {
-        int[] a = new int[]{1, 1, 2};
-//        int[] a = new int[]{0,0,1,1,1,2,2,3,3,4};
-        int i = new Solution().removeDuplicates(a);
+//        int[] nums = DataBuilder.buildIntArray("1,1,2");
+        int[] nums = DataBuilder.buildIntArray("0,0,1,1,1,2,2,3,3,4");
+        int i = new Solution().removeDuplicates(nums);
         System.out.println(i);
-        Printer.printArray(a);
+        Printer.printArray(nums);
     }
 
     static class Solution {

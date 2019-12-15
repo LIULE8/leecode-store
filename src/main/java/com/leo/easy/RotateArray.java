@@ -1,5 +1,6 @@
 package com.leo.easy;
 
+import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
 /**
@@ -33,11 +34,11 @@ import com.leo.utils.Printer;
  */
 public class RotateArray {
     public static void main(String[] args) {
-//        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
+//        int[] nums = DataBuilder.buildIntArray("1,2,3,4,5,6,7");
 //        new Solution().rotate(nums, 3);
-        int[] nums = new int[]{-1, -100, 3, 99}; // 3,99,-1,-100
+        int[] nums = DataBuilder.buildIntArray("-1,-100,3,99"); // 3,99,-1,-100
         new Solution().rotate(nums, 2);
-//        int[] nums = new int[]{1, 2}; // 2,1
+//        int[] nums = DataBuilder.buildIntArray("1,2");// 2,1
 //        new Solution().rotate(nums, 3);
         Printer.printArray(nums);
     }
