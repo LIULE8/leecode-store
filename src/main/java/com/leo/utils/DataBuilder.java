@@ -8,7 +8,7 @@ public class DataBuilder {
      * @param data data1,data2,data3 ..
      * @return ListNode head
      */
-    public static ListNode builderListNode(String data) {
+    public static ListNode buildListNode(String data) {
         String[] datas = data.split(",");
         ListNode head = new ListNode(Integer.parseInt(datas[0]));
         ListNode cur = head;
@@ -17,5 +17,19 @@ public class DataBuilder {
             cur = cur.next;
         }
         return head;
+    }
+
+    /**
+     *
+     * @param data data1,data2,data3 ..
+     * @return
+     */
+    public static int[] buildIntArray(String data){
+        String[] datas = data.split(",");
+        int[] result = new int[datas.length];
+        for (int i = 0; i < datas.length; i++) {
+            result[i] = Integer.parseInt(datas[i]);
+        }
+        return result;
     }
 }

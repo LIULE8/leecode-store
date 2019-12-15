@@ -40,7 +40,7 @@ import com.leo.utils.DataBuilder;
 public class ConvertBinaryNumberInALinkedListToInteger {
     public static void main(String[] args) {
 //        ListNode listNode = DataBuilder.builderListNode("1,0,1");
-        ListNode listNode = DataBuilder.builderListNode("1,0,0,1,0,0,1,1,1,0,0,0,0,0,0");
+        ListNode listNode = DataBuilder.buildListNode("1,0,0,1,0,0,1,1,1,0,0,0,0,0,0");
         int decimalValue = new Solution().getDecimalValue(listNode);
         System.out.println(decimalValue);
     }

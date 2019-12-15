@@ -20,8 +20,8 @@ import com.leo.utils.Printer;
  */
 public class MergeTwoSortedLists {
     public static void main(String[] args) {
-        ListNode l1 = DataBuilder.builderListNode("1,2,4");
-        ListNode l2 = DataBuilder.builderListNode("1,3,4");
+        ListNode l1 = DataBuilder.buildListNode("1,2,4");
+        ListNode l2 = DataBuilder.buildListNode("1,3,4");
         ListNode listNode = new Solution().mergeTwoLists(l1, l2);
         Printer.printListNode(listNode);
     }
