@@ -19,15 +19,34 @@ import com.leo.utils.Printer;
  */
 public class MoveZeroes {
   public static void main(String[] args) {
-    int[] nums = DataBuilder.buildIntArray("0,1,0,3,12");
+    //    int[] nums = DataBuilder.buildIntArray("0,1,0,3,12");
+    //    int[] nums = DataBuilder.buildIntArray("1,0"); //1,0
+    int[] nums = DataBuilder.buildIntArray("1,0,1");
     new Solution().moveZeroes(nums);
     Printer.printArray(nums);
   }
 
   static class Solution {
     public void moveZeroes(int[] nums) {
-//      method1(nums);
+      //      method1(nums);
+      method2(nums);
+    }
 
+    private void method2(int[] nums) {
+      int zero = 0, nozero = 0;
+      while (nozero < nums.length && zero < nums.length) {
+        if (nums[nozero] == 0 || nozero < zero) {
+          nozero++;
+          continue;
+        }
+        if (nums[zero] == 0) {
+          int temp = nums[zero];
+          nums[zero] = nums[nozero];
+          nums[nozero] = temp;
+          continue;
+        }
+        zero++;
+      }
     }
 
     private void method1(int[] nums) {
