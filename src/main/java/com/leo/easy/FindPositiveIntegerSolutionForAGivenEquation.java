@@ -57,6 +57,32 @@ public class FindPositiveIntegerSolutionForAGivenEquation {
 
   static class Solution {
     public List<List<Integer>> findSolution(CustomFunction customfunction, int z) {
+      //      return method1(customfunction, z);
+      return method2(customfunction, z);
+    }
+
+    private List<List<Integer>> method2(CustomFunction customfunction, int z) {
+      List<List<Integer>> res = new ArrayList<>();
+      int l = 1;
+      int r = 1000;
+      while (l <= 1000 && r >= 1) {
+        int temp = customfunction.f(l, r);
+        if (temp == z) {
+          List<Integer> list = new ArrayList<>();
+          list.add(l);
+          list.add(r);
+          res.add(list);
+          l++;
+        } else if (temp > z) {
+          r--;
+        } else {
+          l++;
+        }
+      }
+      return res;
+    }
+
+    private List<List<Integer>> method1(CustomFunction customfunction, int z) {
       List<List<Integer>> result = new ArrayList<>();
       for (int i = 1; i <= z; i++) {
         for (int j = 1; j <= z; j++) {
