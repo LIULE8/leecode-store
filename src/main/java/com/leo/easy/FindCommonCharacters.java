@@ -3,7 +3,10 @@ package com.leo.easy;
 import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 1002. 查找常用字符
@@ -31,14 +34,33 @@ import java.util.*;
 public class FindCommonCharacters {
   public static void main(String[] args) {
 //    String[] strings = DataBuilder.buildStringArray("bella", "label", "roller");
-    String[] strings = DataBuilder.buildStringArray("cool","lock","cook");
+        String[] strings = DataBuilder.buildStringArray("cool", "lock", "cook");
     List<String> list = new Solution().commonChars(strings);
     Printer.printList(list);
   }
 
   static class Solution {
     public List<String> commonChars(String[] A) {
-      return method1(A);
+      //      return method1(A);
+      int[][] nums = new int[A.length][26];
+      for (int i = 0; i < A.length; i++) {
+        char[] chars = A[i].toCharArray();
+        for (char ch : chars) {
+          nums[i][ch - 'a']++;
+        }
+      }
+      for (int j = 0; j < 26; j++) {
+        for (int i = 1; i < A.length; i++) {
+          nums[0][j] = Math.min(nums[i][j], nums[0][j]);
+        }
+      }
+      List<String> list = new ArrayList<>();
+      for (int i = 0; i < nums[0].length; i++) {
+        for (int j = 0; j < nums[0][i]; j++) {
+          list.add(String.valueOf((char) (i + 'a')));
+        }
+      }
+      return list;
     }
 
     private List<String> method1(String[] A) {
