@@ -39,4 +39,12 @@ public class DataBuilder {
   public static String[] buildStringArray(String data) {
     return data.split(",");
   }
+
+  /**
+   * @param data data1,data2,data3 ..
+   * @return
+   */
+  public static String[] buildStringArray(String... data) {
+    return data;
+  }
 }
