@@ -33,8 +33,8 @@ import java.util.Map;
  */
 public class FindCommonCharacters {
   public static void main(String[] args) {
-//    String[] strings = DataBuilder.buildStringArray("bella", "label", "roller");
-        String[] strings = DataBuilder.buildStringArray("cool", "lock", "cook");
+        String[] strings = DataBuilder.buildStringArray("bella", "label", "roller");
+//    String[] strings = DataBuilder.buildStringArray("cool", "lock", "cook");
     List<String> list = new Solution().commonChars(strings);
     Printer.printList(list);
   }
@@ -42,6 +42,36 @@ public class FindCommonCharacters {
   static class Solution {
     public List<String> commonChars(String[] A) {
       //      return method1(A);
+      //      return method2(A);
+      return method3(A);
+    }
+
+    private List<String> method3(String[] A) {
+      int[] nums = new int[26];
+      char[] chars = A[0].toCharArray();
+      for (char ch : chars) {
+        nums[ch - 'a']++;
+      }
+      for (int i = 1; i < A.length; i++) {
+        int[] tempNum = new int[26];
+        chars = A[i].toCharArray();
+        for (char ch : chars) {
+          tempNum[ch - 'a']++;
+        }
+        for (int j = 0; j < 26; j++) {
+          nums[j] = Math.min(nums[j], tempNum[j]);
+        }
+      }
+      List<String> list = new ArrayList<>();
+      for (int i = 0; i < nums.length; i++) {
+        for(int j = 0; j < nums[i]; j++) {
+          list.add(String.valueOf((char) (i + 'a')));
+        }
+      }
+      return list;
+    }
+
+    private List<String> method2(String[] A) {
       int[][] nums = new int[A.length][26];
       for (int i = 0; i < A.length; i++) {
         char[] chars = A[i].toCharArray();
