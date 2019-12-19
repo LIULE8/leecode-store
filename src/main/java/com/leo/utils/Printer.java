@@ -28,4 +28,8 @@ public class Printer {
   public static void printDoubleList(List<List<Integer>> list) {
     System.out.println(list.toString());
   }
+
+  public static void printList(List<String> list) {
+    System.out.println(list.toString());
+  }
 }
