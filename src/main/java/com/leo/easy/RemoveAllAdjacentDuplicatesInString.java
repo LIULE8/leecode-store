@@ -30,7 +30,7 @@ public class RemoveAllAdjacentDuplicatesInString {
 
   static class Solution {
     public String removeDuplicates(String S) {
-
+      return null;
     }
   }
 }
