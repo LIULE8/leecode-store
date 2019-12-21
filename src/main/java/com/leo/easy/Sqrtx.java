@@ -19,8 +19,8 @@ package com.leo.easy;
  */
 public class Sqrtx {
   public static void main(String[] args) {
-    //    int i = new Solution().mySqrt(2147483647);
-    int i = new Solution().mySqrt(4);
+    int i = new Solution().mySqrt(2147483647); // 46340
+    //    int i = new Solution().mySqrt(8);
     System.out.println(i);
   }
 
@@ -28,8 +28,30 @@ public class Sqrtx {
     public int mySqrt(int x) {
       //      return method1(x);
       return method2(x);
+      //      return method3(x);
     }
 
+    /**
+     * 二分查找法, 一个数a的平方根一定比它的一半的平方要小或等于, (a/2)^2 >= a
+     *
+     * @param x
+     * @return
+     */
+    private int method3(int x) {
+      if (x == 0) return 0;
+      long l = 1;
+      long r = x >> 1;
+      while (l < r) {
+        long mid = (l + r + 1) >> 1;
+        long a = mid * mid;
+        if (a > x) {
+          r = mid - 1;
+        } else {
+          l = mid;
+        }
+      }
+      return (int) l;
+    }
     /**
      * 牛顿迭代法，可以用切线近似预测曲线的值
      *
@@ -48,8 +70,10 @@ public class Sqrtx {
     private int method2(int x) {
       if (x <= 1) return x;
       long r = x; // 在f(x)中随便找一个点r
-      while (r - x / r > 0) {
-        r = (r + x / r) / 2; //
+      long a = x / r;
+      while (r - a > 0) {
+        r = (r + a) / 2; //
+        a = x / r;
       }
       return (int) r;
     }
