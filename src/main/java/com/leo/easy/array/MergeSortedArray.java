@@ -1,4 +1,4 @@
-package com.leo.easy;
+package com.leo.easy.array;
 
 import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
