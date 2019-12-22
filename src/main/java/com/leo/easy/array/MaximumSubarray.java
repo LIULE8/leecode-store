@@ -19,15 +19,48 @@ import com.leo.utils.DataBuilder;
 public class MaximumSubarray {
   public static void main(String[] args) {
     int[] ints = DataBuilder.buildIntArray("-2,1,-3,4,-1,2,1,-5,4");
-    //        int[] ints = DataBuilder.buildIntArray("1,2");
-    //    int[] ints = DataBuilder.buildIntArray("-2,1");
+    //    int[] ints = DataBuilder.buildIntArray("1,2");
+    //            int[] ints = DataBuilder.buildIntArray("-2,1");
     int i = new Solution().maxSubArray(ints);
     System.out.println(i);
   }
 
   static class Solution {
     public int maxSubArray(int[] nums) {
-      return method1(nums);
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时 : 66 ms , 在所有 java 提交中击败了 7.61% 的用户
+     *
+     * <p>内存消耗 : 40.9 MB , 在所有 java 提交中击败了 63.92% 的用户
+     *
+     * @param nums
+     * @return 更慢了
+     */
+    private int method2(int[] nums) {
+      if (nums == null) {
+        return 0;
+      }
+      int[] sums = new int[nums.length];
+      sums[0] = nums[0];
+      for (int i = 1; i < nums.length; i++) {
+        sums[i] = sums[i - 1] + nums[i];
+      }
+      int max = sums[0];
+      for (int i = 0; i < sums.length; i++) {
+        if (max < sums[i]) {
+          max = sums[i];
+        }
+        for (int j = 0; j < i; j++) {
+          int sub = sums[i] - sums[j];
+          if (sub > max) {
+            max = sub;
+          }
+        }
+      }
+      return max;
     }
 
     /**
