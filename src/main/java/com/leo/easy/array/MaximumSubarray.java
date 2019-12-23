@@ -18,9 +18,10 @@ import com.leo.utils.DataBuilder;
  */
 public class MaximumSubarray {
   public static void main(String[] args) {
-    int[] ints = DataBuilder.buildIntArray("-2,1,-3,4,-1,2,1,-5,4");
-    //    int[] ints = DataBuilder.buildIntArray("1,2");
-    //            int[] ints = DataBuilder.buildIntArray("-2,1");
+        int[] ints = DataBuilder.buildIntArray("-2,1,-3,4,-1,2,1,-5,4");
+//    int[] ints = DataBuilder.buildIntArray("1");
+//        int[] ints = DataBuilder.buildIntArray("1,2");
+//                int[] ints = DataBuilder.buildIntArray("-2,1");
     int i = new Solution().maxSubArray(ints);
     System.out.println(i);
   }
@@ -28,7 +29,72 @@ public class MaximumSubarray {
   static class Solution {
     public int maxSubArray(int[] nums) {
       //      return method1(nums);
-      return method2(nums);
+      //      return method2(nums);
+      //      return method3(nums);
+      //      return method4(nums);
+      return method5(nums);
+    }
+
+    private int method5(int[] nums) {
+      if (nums == null) return 0;
+      long maxSum = Long.MIN_VALUE;
+      long sum = 0;
+      for (int num : nums) {
+        if (sum <= 0) {
+          sum = num;
+        } else {
+          sum += num;
+        }
+        maxSum = Math.max(maxSum, sum);
+      }
+      return (int) maxSum;
+    }
+
+    /**
+     * 动态规划：
+     *
+     * <p>实际上只需要使用到 dp[i-1]的空间，所有可以减少空间复杂度
+     *
+     * @param nums
+     * @return
+     */
+    private int method4(int[] nums) {
+      if (nums == null) return 0;
+      int dp = nums[0];
+      long maxSum = dp;
+      for (int i = 1; i < nums.length; i++) {
+        dp = Math.max(nums[i], dp + nums[i]);
+        maxSum = Math.max(maxSum, dp);
+      }
+      return (int) maxSum;
+    }
+
+    /**
+     * 执行用时 : 2 ms , 在所有 java 提交中击败了 30.73% 的用户
+     *
+     * <p>内存消耗 : 37.7 MB , 在所有 java 提交中击败了 89.05% 的用户
+     *
+     * <p>动态规划
+     *
+     * <p>使用 dp[i] 存储， 已下标i结束的子序列的最大和
+     *
+     * <p>空间复杂度为O(n)
+     *
+     * <p>时间复杂度为O(n)
+     *
+     * @param nums
+     * @return
+     */
+    private int method3(int[] nums) {
+      if (nums == null) return 0;
+      int[] dp = new int[nums.length];
+      dp[0] = nums[0];
+      long maxSum = dp[0];
+      for (int i = 1; i < nums.length; i++) {
+        dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+        maxSum = Math.max(maxSum, dp[i]);
+      }
+      return (int) maxSum;
     }
 
     /**
