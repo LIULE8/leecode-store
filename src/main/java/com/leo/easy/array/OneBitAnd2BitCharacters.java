@@ -1,6 +1,9 @@
 package com.leo.easy.array;
 
 import com.leo.utils.DataBuilder;
+import com.leo.utils.Printer;
+
+import java.util.List;
 
 /**
  * 717. 1比特与2比特字符
@@ -22,17 +25,42 @@ import com.leo.utils.DataBuilder;
  */
 public class OneBitAnd2BitCharacters {
   public static void main(String[] args) {
-//    int[] ints = DataBuilder.buildIntArray("1,0,0");
-//    int[] ints = DataBuilder.buildIntArray("1,1,1,0");
-    int[] ints = DataBuilder.buildIntArray("1,0,0,0");
-    boolean b = new Solution().isOneBitCharacter(ints);
-    System.out.println(b);
+    //    int[] ints = DataBuilder.buildIntArray("0"); // true
+    //    int[] ints = DataBuilder.buildIntArray("1"); //false
+    //    int[] ints = DataBuilder.buildIntArray("1,0,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("1,1,0"); // true
+    //    int[] ints = DataBuilder.buildIntArray("1,1,1,0"); // false
+    //    int[] ints = DataBuilder.buildIntArray("1,0,0,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("1,1,0,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("1,0,1,0"); // false
+    //    int[] ints = DataBuilder.buildIntArray("1,0,1,0,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("1,0,1,1,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("0,0,1,1,0"); //true
+    //    int[] ints = DataBuilder.buildIntArray("1,1,1,1,0"); //true
+    //    boolean b = new Solution().isOneBitCharacter(ints);
+    //    System.out.println(b);
+
+    List<int[]> list =
+        DataBuilder.buildIntArrays(
+            "0", "1", "1,0,0", "1,1,0", "0,1,0", "1,1,1,0", "1,0,0,0", "1,1,0,0", "1,0,1,0");
+    for (int[] ints : list) {
+      Printer.printArray(ints);
+      System.out.println(" -------> " + new Solution().isOneBitCharacter(ints));
+    }
   }
 
   static class Solution {
     public boolean isOneBitCharacter(int[] bits) {
       if (bits == null || bits[bits.length - 1] == 1) return false;
-
+      int count = 0;
+      for (int i = bits.length - 2; i >= 0; i--) {
+        if (bits[i] == 1) {
+          count++;
+          continue;
+        }
+        break;
+      }
+      return count % 2 == 0;
     }
   }
 }

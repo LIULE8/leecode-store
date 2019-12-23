@@ -2,6 +2,9 @@ package com.leo.utils;
 
 import com.leo.structure.ListNode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataBuilder {
 
   /**
@@ -46,5 +49,13 @@ public class DataBuilder {
    */
   public static String[] buildStringArray(String... data) {
     return data;
+  }
+
+  public static List<int[]> buildIntArrays(String... data) {
+    List<int[]> list = new ArrayList<>();
+    for (String s : data) {
+      list.add(buildIntArray(s));
+    }
+    return list;
   }
 }
