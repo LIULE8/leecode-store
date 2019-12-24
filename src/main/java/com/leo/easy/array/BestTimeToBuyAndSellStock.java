@@ -1,5 +1,7 @@
 package com.leo.easy.array;
 
+import com.leo.utils.DataBuilder;
+
 /**
  * 121. 买卖股票的最佳时机 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
  *
@@ -19,12 +21,24 @@ package com.leo.easy.array;
  */
 public class BestTimeToBuyAndSellStock {
   public static void main(String[] args) {
-    new Solution();
+//    int[] ints = DataBuilder.buildIntArray("7,1,5,3,6,4");
+    int[] ints = DataBuilder.buildIntArray("7,6,4,3,1");
+    int i = new Solution().maxProfit(ints);
+    System.out.println(i);
   }
 
   static class Solution {
     public int maxProfit(int[] prices) {
-
+      int max = 0;
+      for (int i = 0; i < prices.length - 1; i++) {
+        for (int j = i+1; j < prices.length; j++) {
+          int temp = prices[j] - prices[i];
+          if (temp > max){
+             max = temp;
+           }
+        }
+      }
+      return max;
     }
   }
 }
