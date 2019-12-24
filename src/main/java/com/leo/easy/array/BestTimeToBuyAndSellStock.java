@@ -21,21 +21,56 @@ import com.leo.utils.DataBuilder;
  */
 public class BestTimeToBuyAndSellStock {
   public static void main(String[] args) {
-//    int[] ints = DataBuilder.buildIntArray("7,1,5,3,6,4");
-    int[] ints = DataBuilder.buildIntArray("7,6,4,3,1");
+    int[] ints = DataBuilder.buildIntArray("7,1,5,3,6,4");
+    //    int[] ints = DataBuilder.buildIntArray("7,6,4,3,1");
     int i = new Solution().maxProfit(ints);
     System.out.println(i);
   }
 
   static class Solution {
     public int maxProfit(int[] prices) {
+      //      return method1(prices);
+//      return method2(prices);
+      return method3(prices);
+    }
+
+    private int method3(int[] prices) {
+      if (prices == null || prices.length == 0) return 0;
+      int dp = prices[0];
+      int res = 0;
+      for (int i = 1; i < prices.length; i++) {
+         dp = Math.min(prices[i], dp);
+         res = Math.max(res, prices[i] - dp);
+      }
+      return res;
+    }
+
+    /**
+     * 已 下标i结束的 最小值
+     *
+     * @param prices
+     * @return
+     */
+    private int method2(int[] prices) {
+      if (prices == null || prices.length == 0) return 0;
+      int[] dp = new int[prices.length];
+      dp[0] = prices[0];
+      int res = 0;
+      for (int i = 1; i < prices.length; i++) {
+        dp[i] = Math.min(prices[i], dp[i - 1]);
+        res = Math.max(res, prices[i] - dp[i]);
+      }
+      return res;
+    }
+
+    private int method1(int[] prices) {
       int max = 0;
       for (int i = 0; i < prices.length - 1; i++) {
-        for (int j = i+1; j < prices.length; j++) {
+        for (int j = i + 1; j < prices.length; j++) {
           int temp = prices[j] - prices[i];
-          if (temp > max){
-             max = temp;
-           }
+          if (temp > max) {
+            max = temp;
+          }
         }
       }
       return max;
