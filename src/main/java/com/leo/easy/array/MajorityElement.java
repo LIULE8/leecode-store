@@ -31,7 +31,24 @@ public class MajorityElement {
   static class Solution {
     public int majorityElement(int[] nums) {
       //        return method1(nums);
-      return method2(nums);
+      //      return method2(nums);
+      return method3(nums);
+    }
+
+    private int method3(int[] nums) {
+      int count = 1;
+      int num = nums[0];
+      for (int i = 1; i < nums.length; i++) {
+        if (num == nums[i]) {
+          count++;
+        } else {
+          count--;
+          if (count == 0) {
+            num = nums[i + 1];
+          }
+        }
+      }
+      return num;
     }
 
     private int method2(int[] nums) {
