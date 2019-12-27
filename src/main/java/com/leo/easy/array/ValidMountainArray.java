@@ -29,29 +29,33 @@ import com.leo.utils.DataBuilder;
  */
 public class ValidMountainArray {
   public static void main(String[] args) {
-//    int[] ints = DataBuilder.buildIntArray("2,1");
-//    int[] ints = DataBuilder.buildIntArray("3,5,5");
-    int[] ints = DataBuilder.buildIntArray("0,3,2,1");
+        int[] ints = DataBuilder.buildIntArray("2,1");
+//        int[] ints = DataBuilder.buildIntArray("3,5,5");
+//    int[] ints = DataBuilder.buildIntArray("0,3,2,1");
     boolean b = new Solution().validMountainArray(ints);
     System.out.println(b);
   }
 
   static class Solution {
     public boolean validMountainArray(int[] A) {
-      if (A == null || A.length == 0) return false;
-
-      int l = 0;
-      int r = A.length - 1;
-
-      while (l <= r) {
-        if (A[r] > A[r - 1]) {
-          return false;
+      if (A == null || A.length < 3) return false;
+      int index = 0;
+      while (index < A.length - 1) {
+        if (A[index] < A[index + 1]) {
+          index++;
+          continue;
         }
-        if (A[l] > A[l + 1]) {
-          return false;
+        break;
+      }
+      if (index > A.length - 1) {
+        return false;
+      }
+      while (index < A.length - 1) {
+        if (A[index] > A[index + 1]) {
+          index++;
+          continue;
         }
-        r--;
-        l++;
+        return false;
       }
       return true;
     }
