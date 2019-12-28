@@ -29,15 +29,36 @@ import com.leo.utils.DataBuilder;
  */
 public class ValidMountainArray {
   public static void main(String[] args) {
-        int[] ints = DataBuilder.buildIntArray("2,1");
-//        int[] ints = DataBuilder.buildIntArray("3,5,5");
-//    int[] ints = DataBuilder.buildIntArray("0,3,2,1");
+    //        int[] ints = DataBuilder.buildIntArray("2,1");
+    //        int[] ints = DataBuilder.buildIntArray("3,5,5");
+    //    int[] ints = DataBuilder.buildIntArray("0,1,2,3,4,5,6,7,8,9");
+    int[] ints = DataBuilder.buildIntArray("9,8,7,6,5,4,3,2,1,0");
+    //    int[] ints = DataBuilder.buildIntArray("0,3,2,1");
     boolean b = new Solution().validMountainArray(ints);
     System.out.println(b);
   }
 
   static class Solution {
     public boolean validMountainArray(int[] A) {
+      //      return method1(A);
+      return method2(A);
+    }
+
+    private boolean method2(int[] A) {
+      if (A == null || A.length < 3) return false;
+      int l = 0;
+      int r = A.length - 1;
+      while (l <= r) {
+        if (A[l] < A[l + 1]) {
+          l++;
+        }else{
+
+        }
+
+      }
+    }
+
+    private boolean method1(int[] A) {
       if (A == null || A.length < 3) return false;
       int index = 0;
       while (index < A.length - 1) {
@@ -47,7 +68,7 @@ public class ValidMountainArray {
         }
         break;
       }
-      if (index > A.length - 1) {
+      if (index == A.length - 1 || index == 0) {
         return false;
       }
       while (index < A.length - 1) {
