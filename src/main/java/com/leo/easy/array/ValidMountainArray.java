@@ -33,7 +33,7 @@ public class ValidMountainArray {
     //        int[] ints = DataBuilder.buildIntArray("3,5,5");
     //    int[] ints = DataBuilder.buildIntArray("0,1,2,3,4,5,6,7,8,9");
     int[] ints = DataBuilder.buildIntArray("9,8,7,6,5,4,3,2,1,0");
-    //    int[] ints = DataBuilder.buildIntArray("0,3,2,1");
+    //        int[] ints = DataBuilder.buildIntArray("0,3,2,1");
     boolean b = new Solution().validMountainArray(ints);
     System.out.println(b);
   }
@@ -44,20 +44,37 @@ public class ValidMountainArray {
       return method2(A);
     }
 
+    /**
+     * 执行用时 : 1 ms , 在所有 java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 40.7 MB , 在所有 java 提交中击败了 80.73% 的用户
+     *
+     * <p>优化后的扫描方法
+     *
+     * @param A
+     * @return
+     */
     private boolean method2(int[] A) {
       if (A == null || A.length < 3) return false;
-      int l = 0;
-      int r = A.length - 1;
-      while (l <= r) {
-        if (A[l] < A[l + 1]) {
-          l++;
-        }else{
-
-        }
-
-      }
+      int i = 0;
+      // 往左扫描
+      while (i + 1 < A.length && A[i] < A[i + 1]) i++;
+      if (i == 0 || i == A.length - 1) return false;
+      // 继续扫描
+      while (i + 1 < A.length && A[i] > A[i + 1]) i++;
+      return i == A.length - 1;
     }
 
+    /**
+     * 执行用时 : 1 ms , 在所有 java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 40.9 MB , 在所有 java 提交中击败了 79.36% 的用户
+     *
+     * <p>我的线性扫描 时间复杂度：O(n)
+     *
+     * @param A
+     * @return
+     */
     private boolean method1(int[] A) {
       if (A == null || A.length < 3) return false;
       int index = 0;
