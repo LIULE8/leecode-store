@@ -39,7 +39,7 @@ public class BestTimeToBuyAndSellStockIi {
   static class Solution {
     public int maxProfit(int[] prices) {
       //      return method1(prices);
-//      return method2(prices);
+      //      return method2(prices);
       return method3(prices);
     }
 
@@ -52,7 +52,7 @@ public class BestTimeToBuyAndSellStockIi {
      *
      * <p>执行用时 : 1 ms , 在所有 java 提交中击败了 99.97% 的用户
      *
-     * <p>内存消耗 : 37.4 MB , 在所有 java 提交中击败了 68.36% 的用户
+     * <p>内存消耗 : 37 MB , 在所有 java 提交中击败了 82.17% 的用户
      *
      * @param prices
      * @return
@@ -60,9 +60,9 @@ public class BestTimeToBuyAndSellStockIi {
     private int method2(int[] prices) {
       if (prices == null || prices.length == 0) return 0;
       int sum = 0;
-      for (int i = 0; i + 1 < prices.length; i++) {
-        if (prices[i] < prices[i + 1]) {
-          sum += (prices[i + 1] - prices[i]);
+      for (int i = 1; i < prices.length; i++) {
+        if (prices[i - 1] < prices[i]) {
+          sum += (prices[i] - prices[i - 1]);
         }
       }
       return sum;
