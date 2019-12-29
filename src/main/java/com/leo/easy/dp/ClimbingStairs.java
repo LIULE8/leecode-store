@@ -1,7 +1,5 @@
 package com.leo.easy.dp;
 
-import java.util.Arrays;
-
 /**
  * 70. 爬楼梯
  *
@@ -31,12 +29,42 @@ public class ClimbingStairs {
 
   static class Solution {
     public int climbStairs(int n) {
-      int[] code = new int[] {1, 2};
-      //      return method1(code, n);
+      //      int[] codes = new int[] {1, 2};
+      //      return method1(codes, n);
 
-      int[] node = new int[n];
-      Arrays.fill(node, -1);
-      return method2(node, code, n);
+      //      int[] codes = new int[] {1, 2};
+      //      int[] node = new int[n];
+      //      Arrays.fill(node, -1);
+      //      return method2(node, codes, n);
+
+      return method3(n);
+    }
+
+    /**
+     * 本质上是斐波拉契数列
+     *
+     * <p>执行用时 : 0 ms , 在所有 java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 32.7 MB , 在所有 java 提交中击败了 75.54% 的用户
+     *
+     * <p>第10阶的走法数量 == 第9阶的走法数量 + 第8阶的走法数量 .. F(10) = F(9) + F(8)
+     *
+     * <p>第1阶的走法数量 == 1 F(1) = 1
+     *
+     * <p>第2阶的走法数量 == 2 F(2) = 2
+     *
+     * @param n
+     * @return
+     */
+    private int method3(int n) {
+      if (n == 1) return 1;
+      int a = 1, b = 1, sum = 0;
+      for (int i = 1; i < n; i++) {
+        sum = a + b;
+        a = b;
+        b = sum;
+      }
+      return sum;
     }
 
     /**
