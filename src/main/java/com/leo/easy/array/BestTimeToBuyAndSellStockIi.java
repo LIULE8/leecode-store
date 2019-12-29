@@ -61,8 +61,9 @@ public class BestTimeToBuyAndSellStockIi {
       if (prices == null || prices.length == 0) return 0;
       int sum = 0;
       for (int i = 1; i < prices.length; i++) {
-        if (prices[i - 1] < prices[i]) {
-          sum += (prices[i] - prices[i - 1]);
+        int diff = prices[i] - prices[i - 1];
+        if (diff > 0) {
+          sum += diff;
         }
       }
       return sum;
