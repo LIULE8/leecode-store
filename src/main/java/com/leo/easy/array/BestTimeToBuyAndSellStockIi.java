@@ -27,11 +27,11 @@ import com.leo.utils.DataBuilder;
 public class BestTimeToBuyAndSellStockIi {
   public static void main(String[] args) {
     //        int[] ints = DataBuilder.buildIntArray("7,1,2,3,5,1,9"); // 12
-    //        int[] ints = DataBuilder.buildIntArray("7,1,5,3,6,4");
+    int[] ints = DataBuilder.buildIntArray("7,1,5,3,6,4"); // 7
     //        int[] ints = DataBuilder.buildIntArray("1,2,3,4,5");
     //        int[] ints = DataBuilder.buildIntArray("5,4,3,2,1");
     //    int[] ints = DataBuilder.buildIntArray("1,2");
-    int[] ints = DataBuilder.buildIntArray("1");
+    //    int[] ints = DataBuilder.buildIntArray("1");
     int i = new Solution().maxProfit(ints);
     System.out.println(i);
   }
@@ -44,7 +44,19 @@ public class BestTimeToBuyAndSellStockIi {
     }
 
     private int method3(int[] prices) {
-      return 0;
+      if (prices == null || prices.length == 0) return 0;
+      int dp[][] = new int[prices.length][2];
+      dp[0][0] = 0; // 卖出
+      dp[0][1] = -prices[0]; // 买入
+      for (int i = 1; i < prices.length; i++) {
+                          // 前一天卖出价和 今天卖出价哪个高
+                          // 今天卖出价： 前天买入价(负数) + 今天卖出价
+        dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]); // 卖出
+//        "7,1,5,3,6,4"
+        dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]); // 买入
+      }
+      // 最后一天买入，肯定没有最后一天卖出的高，所以直接返回最后一天卖出
+      return dp[prices.length - 1][0];
     }
 
     /**
