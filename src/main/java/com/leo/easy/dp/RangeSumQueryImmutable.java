@@ -31,31 +31,25 @@ public class RangeSumQueryImmutable {
   }
 
   /**
-   * Your NumArray object will be instantiated and called as such: NumArray obj = new
-   * NumArray(nums); int param_1 = obj.sumRange(i,j);
+   * 缓存法，使用dp table 缓存之前的和。
+   *
+   * <p>执行用时 : 12 ms , 在所有 java 提交中击败了 99.62% 的用户
+   *
+   * <p>内存消耗 : 40.1 MB , 在所有 java 提交中击败了 98.70% 的用户
    */
-  // leetcode submit region end(Prohibit modification and deletion)
   static class NumArray {
 
-    private int[] nums;
-
-    private Integer[][] dp;
+    private int[] sums;
 
     public NumArray(int[] nums) {
-      this.nums = nums;
-      dp = new Integer[nums.length][nums.length];
+      sums = new int[nums.length + 1];
+      for (int i = 0; i < nums.length; i++) {
+        sums[i + 1] = sums[i] + nums[i];
+      }
     }
 
     public int sumRange(int i, int j) {
-      if (i >= 0 && i < nums.length && j >= 0 && j < nums.length) {
-        if (dp[i][j] != null) return dp[i][j];
-        dp[i][i] = nums[i];
-        for (int k = i + 1; k <= j; k++) {
-          dp[i][k] = dp[i][k - 1] + nums[k];
-        }
-        return dp[i][j];
-      }
-      return -1;
+      return sums[j + 1] - sums[i];
     }
   }
 }
