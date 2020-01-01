@@ -21,8 +21,8 @@ import com.leo.utils.DataBuilder;
  */
 public class HouseRobber {
   public static void main(String[] args) {
-//    int[] ints = DataBuilder.buildIntArray("2,7,9,3,1");
-//    int[] ints = DataBuilder.buildIntArray("1,2,3,1");
+    //    int[] ints = DataBuilder.buildIntArray("2,7,9,3,1");
+    //    int[] ints = DataBuilder.buildIntArray("1,2,3,1");
     int[] ints = DataBuilder.buildIntArray("2,1,1,2");
     int rob = new Solution().rob(ints);
     System.out.println(rob);
@@ -30,16 +30,55 @@ public class HouseRobber {
 
   static class Solution {
     public int rob(int[] nums) {
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 奇偶法
+     *
+     * <p>执行用时 : 0 ms , 在所有 java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 34 MB , 在所有 java 提交中击败了 89.88% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
       int odd = 0;
       int even = 0;
       for (int i = 0; i < nums.length; i++) {
         if (i % 2 == 0) {
           odd += nums[i];
+          odd = Math.max(odd, even);
         } else {
           even += nums[i];
+          even = Math.max(odd, even);
         }
       }
       return Math.max(odd, even);
+    }
+
+    /**
+     * 动态规划
+     *
+     * <p>执行用时 : 0 ms , 在所有 java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 34.3 MB , 在所有 java 提交中击败了 85.94% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method1(int[] nums) {
+      if (nums == null || nums.length == 0) return 0;
+      int prevMax = 0;
+      int currMax = 0;
+      for (int num : nums) {
+        int temp = currMax;
+        currMax = Math.max(prevMax + num, currMax);
+        prevMax = temp;
+      }
+      return currMax;
     }
   }
 }
