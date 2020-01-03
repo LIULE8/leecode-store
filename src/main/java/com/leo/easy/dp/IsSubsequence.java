@@ -26,16 +26,37 @@ package com.leo.easy.dp;
  */
 public class IsSubsequence {
   public static void main(String[] args) {
-    //    boolean subsequence = new Solution().isSubsequence("abc", "ahbgdc"); // true
+    boolean subsequence = new Solution().isSubsequence("abc", "ahbgdc"); // true
     //    boolean subsequence = new Solution().isSubsequence("axc", "ahbgdc");  // false
-    boolean subsequence = new Solution().isSubsequence("acb", "ahbgdc"); // false
+    //    boolean subsequence = new Solution().isSubsequence("acb", "ahbgdc"); // false
     //        boolean subsequence = new Solution().isSubsequence("acb", ""); // false
     System.out.println(subsequence);
   }
 
   static class Solution {
     public boolean isSubsequence(String s, String t) {
-      return method1(s, t);
+      //      return method1(s, t);
+      return method2(s, t);
+    }
+
+    /**
+     * for循环
+     *
+     * <p>执行用时 : 4 ms , 在所有 Java 提交中击败了 74.40% 的用户
+     *
+     * <p>内存消耗 : 49.6 MB , 在所有 Java 提交中击败了 95.23% 的用户
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    private boolean method2(String s, String t) {
+      for (int i = 0; i < s.length(); i++) {
+        int a = t.indexOf(s.charAt(i));
+        if (a < 0) return false;
+        t = t.substring(a + 1);
+      }
+      return true;
     }
 
     /**
