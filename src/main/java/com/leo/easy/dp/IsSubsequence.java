@@ -26,8 +26,8 @@ package com.leo.easy.dp;
  */
 public class IsSubsequence {
   public static void main(String[] args) {
-    boolean subsequence = new Solution().isSubsequence("abc", "ahbgdc"); // true
-    //    boolean subsequence = new Solution().isSubsequence("axc", "ahbgdc");  // false
+//    boolean subsequence = new Solution().isSubsequence("abc", "ahbgdc"); // true
+        boolean subsequence = new Solution().isSubsequence("axc", "ahbgdc");  // false
     //    boolean subsequence = new Solution().isSubsequence("acb", "ahbgdc"); // false
     //        boolean subsequence = new Solution().isSubsequence("acb", ""); // false
     System.out.println(subsequence);
