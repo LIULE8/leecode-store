@@ -36,6 +36,7 @@ public class IsSubsequence {
   static class Solution {
     public boolean isSubsequence(String s, String t) {
       //      return method1(s, t);
+
       return method2(s, t);
     }
 
