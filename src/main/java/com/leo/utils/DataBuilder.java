@@ -58,4 +58,13 @@ public class DataBuilder {
     }
     return list;
   }
+
+  public static int[][] buildDoubleArray(String s) {
+//    s = s.substring(s.lastIndexOf("]]"));
+    String[] split = s.split("],\\[");
+    for (String value : split) {
+      System.out.println(value);
+    }
+    return null;
+  }
 }
