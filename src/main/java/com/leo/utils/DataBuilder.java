@@ -60,11 +60,32 @@ public class DataBuilder {
   }
 
   public static int[][] buildDoubleArray(String s) {
-//    s = s.substring(s.lastIndexOf("]]"));
+    //    s = s.substring(s.lastIndexOf("]]"));
     String[] split = s.split("],\\[");
-    for (String value : split) {
-      System.out.println(value);
+    int[][] a = new int[split.length][];
+    for (int i = 0; i < split.length; i++) {
+      if (i == 0) {
+        String str = split[i].substring(2);
+        String[] sp = str.split(",");
+        a[i] = new int[sp.length];
+        for (int j = 0; j < sp.length; j++) {
+          a[i][j] = Integer.parseInt(sp[j]);
+        }
+      } else if (i == split.length - 1) {
+        String str = split[i].substring(0, split[i].indexOf("]"));
+        String[] sp = str.split(",");
+        a[i] = new int[sp.length];
+        for (int j = 0; j < sp.length; j++) {
+          a[i][j] = Integer.parseInt(sp[j]);
+        }
+      } else {
+        String[] sp = split[i].split(",");
+        a[i] = new int[sp.length];
+        for (int j = 0; j < sp.length; j++) {
+          a[i][j] = Integer.parseInt(sp[j]);
+        }
+      }
     }
-    return null;
+    return a;
   }
 }

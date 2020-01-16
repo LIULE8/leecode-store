@@ -1,6 +1,7 @@
 package com.leo.easy.dp;
 
 import com.leo.utils.DataBuilder;
+import com.leo.utils.Printer;
 
 /**
  * 256. 粉刷房子
@@ -28,27 +29,65 @@ public class PaintTheHouse {
 
   public static void main(String[] args) {
     //
-      int[][] ints = DataBuilder.buildDoubleArray("[[17,2,17],[16,16,5],[14,3,19]]");
-
+    int[][] ints = DataBuilder.buildDoubleArray("[[17,2,17],[16,16,5],[14,3,19]]");
+    Printer.printDoubleArray(ints);
+    int i = new Solution().minCost(ints);
+    System.out.println(i);
   }
 
   static class Solution {
     public int minCost(int[][] costs) {
-        return method1(costs);
+      //      return method1(costs);
+      return method2(costs);
     }
 
-      private int method1(int[][] costs) {
-          if (costs == null || costs.length == 1) return 0;
-          int[][] dp = new int[costs.length][3];
-          dp[0][0] = costs[0][0];
-          dp[0][1] = costs[0][1];
-          dp[0][2] = costs[0][2];
-          for (int i = 1; i < costs.length; i++) {
-              dp[i][0] = Math.min(dp[i-1][1], dp[i-1][2]) + dp[i-1][0];
-              dp[i][1] = Math.min(dp[i-1][0], dp[i-1][2]) + dp[i-1][1];
-              dp[i][2] = Math.min(dp[i-1][0], dp[i-1][1]) + dp[i-1][2];
-          }
-          return Math.min(dp[costs.length-1][0], Math.min(dp[costs.length-1][1],dp[costs.length-1][2]));
+    /**
+     * 执行用时 : 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 40.2 MB , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * @param costs
+     * @return
+     */
+    private int method1(int[][] costs) {
+      if (costs == null || costs.length == 0) return 0;
+      int[][] dp = new int[costs.length][3];
+      dp[0][0] = costs[0][0];
+      dp[0][1] = costs[0][1];
+      dp[0][2] = costs[0][2];
+      for (int i = 1; i < costs.length; i++) {
+        dp[i][0] = Math.min(dp[i - 1][1], dp[i - 1][2]) + costs[i][0];
+        dp[i][1] = Math.min(dp[i - 1][0], dp[i - 1][2]) + costs[i][1];
+        dp[i][2] = Math.min(dp[i - 1][0], dp[i - 1][1]) + costs[i][2];
       }
+      return Math.min(
+          dp[costs.length - 1][0], Math.min(dp[costs.length - 1][1], dp[costs.length - 1][2]));
+    }
+
+    /**
+     * 空间优化
+     *
+     * <p>执行用时 : 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 39.9 MB , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * @param costs
+     * @return
+     */
+    private int method2(int[][] costs) {
+      if (costs == null || costs.length == 0) return 0;
+      int dp0 = costs[0][0];
+      int dp1 = costs[0][1];
+      int dp2 = costs[0][2];
+      for (int i = 1; i < costs.length; i++) {
+        int tempdp0 = Math.min(dp1, dp2) + costs[i][0];
+        int tempdp1 = Math.min(dp0, dp2) + costs[i][1];
+        int tempdp2 = Math.min(dp0, dp1) + costs[i][2];
+        dp0 = tempdp0;
+        dp1 = tempdp1;
+        dp2 = tempdp2;
+      }
+      return Math.min(dp0, Math.min(dp1, dp2));
+    }
   }
 }
