@@ -38,12 +38,29 @@ package com.leo.easy.dp;
  */
 public class FencePainting {
   public static void main(String[] args) {
-    //
+    //    int i = new Solution().numWays(3, 2); //6
+    //    int i = new Solution().numWays(2, 1); //1
+    int i = new Solution().numWays(4, 3); // 66
+    System.out.println(i);
   }
 
   static class Solution {
+    /**
+     * @param n 柱子数
+     * @param k 颜色数
+     * @return
+     */
     public int numWays(int n, int k) {
-
+      if (n == 0 || k == 0) return 0;
+      if (k == 1) return 1;
+      int[][] dp = new int[n][2];
+      dp[0][0] = k; // 和  n-1 一样
+      dp[0][1] = k; // 新
+      for (int i = 1; i < n; i++) {
+        dp[i][0] = dp[i - 1][0] * (k - 1);
+        dp[i][1] = dp[i - 1][1] * (k - 1);
+      }
+      return dp[n - 1][0] + dp[n - 1][1];
     }
   }
 }
