@@ -40,27 +40,32 @@ public class FencePainting {
   public static void main(String[] args) {
     //    int i = new Solution().numWays(3, 2); //6
     //    int i = new Solution().numWays(2, 1); //1
-    int i = new Solution().numWays(4, 3); // 66
+    //    int i = new Solution().numWays(4, 3); // 66
+    int i = new Solution().numWays(1, 2); // 2
     System.out.println(i);
   }
 
   static class Solution {
     /**
+     * 执行用时 : 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 33.3 MB , 在所有 Java 提交中击败了 5.19% 的用户
+     *
      * @param n 柱子数
      * @param k 颜色数
      * @return
      */
     public int numWays(int n, int k) {
       if (n == 0 || k == 0) return 0;
-      if (k == 1) return 1;
-      int[][] dp = new int[n][2];
-      dp[0][0] = k; // 和  n-1 一样
-      dp[0][1] = k; // 新
-      for (int i = 1; i < n; i++) {
-        dp[i][0] = dp[i - 1][0] * (k - 1);
-        dp[i][1] = dp[i - 1][1] * (k - 1);
+      if (n == 1) return k;
+      int diff = k * (k - 1);
+      int same = k;
+      for (int i = 2; i < n; i++) {
+        int temp = diff;
+        diff = (diff + same) * (k - 1);
+        same = temp;
       }
-      return dp[n - 1][0] + dp[n - 1][1];
+      return diff + same;
     }
   }
 }
