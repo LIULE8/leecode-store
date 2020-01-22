@@ -1,5 +1,7 @@
 package com.leo.easy.dp;
 
+import com.leo.utils.DataBuilder;
+
 /**
  * 746. 使用最小花费爬楼梯
  *
@@ -23,12 +25,18 @@ package com.leo.easy.dp;
  */
 public class MinCostClimbingStairs {
   public static void main(String[] args) {
-    Solution solution = new Solution();
+    System.out.println(new Solution().minCostClimbingStairs(DataBuilder.buildIntArray("10,15,20")));
   }
 
   static class Solution {
     public int minCostClimbingStairs(int[] cost) {
-
+      if (cost == null || cost.length == 0) return 0;
+      int[] dp = new int[cost.length];
+      dp[0] = cost[0];
+      for (int i = 1; i < cost.length; i++) {
+        dp[i] = Math.min(dp[i - 1] + cost[i], dp[i-1]);
+      }
+      return dp[cost.length - 1];
     }
   }
 }
