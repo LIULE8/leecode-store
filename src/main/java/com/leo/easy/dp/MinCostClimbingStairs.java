@@ -29,7 +29,20 @@ public class MinCostClimbingStairs {
   }
 
   static class Solution {
+
     public int minCostClimbingStairs(int[] cost) {
+      return method1(cost);
+    }
+
+    /**
+     * 执行用时 : 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 38.6 MB , 在所有 Java 提交中击败了 53.73% 的用户
+     *
+     * @param cost
+     * @return
+     */
+    private int method1(int[] cost) {
       if (cost == null || cost.length == 0) return 0;
       int dp1 = 0, dp2 = 0;
       for (int i = cost.length - 1; i >= 0; i--) {
