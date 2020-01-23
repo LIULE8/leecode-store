@@ -31,12 +31,13 @@ public class MinCostClimbingStairs {
   static class Solution {
     public int minCostClimbingStairs(int[] cost) {
       if (cost == null || cost.length == 0) return 0;
-      int[] dp = new int[cost.length];
-      dp[0] = cost[0];
-      for (int i = 1; i < cost.length; i++) {
-        dp[i] = Math.min(dp[i - 1] + cost[i], dp[i-1]);
+      int dp1 = 0, dp2 = 0;
+      for (int i = cost.length - 1; i >= 0; i--) {
+        int dp = cost[i] + Math.min(dp1, dp2);
+        dp2 = dp1;
+        dp1 = dp;
       }
-      return dp[cost.length - 1];
+      return Math.min(dp1, dp2);
     }
   }
 }
