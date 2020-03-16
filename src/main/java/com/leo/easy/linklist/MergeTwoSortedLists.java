@@ -1,4 +1,4 @@
-package com.leo.easy;
+package com.leo.easy.linklist;
 
 import com.leo.structure.ListNode;
 import com.leo.utils.DataBuilder;
