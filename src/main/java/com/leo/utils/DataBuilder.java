@@ -24,6 +24,25 @@ public class DataBuilder {
 
   /**
    * @param data data1,data2,data3 ..
+   * @param pos 最后一个节点指向第i个节点，形成环
+   * @return
+   */
+  public static ListNode buildCycleListNode(String data, int pos) {
+    String[] datas = data.split(",");
+    ListNode head = new ListNode(Integer.parseInt(datas[0]));
+    ListNode cur = head;
+    ListNode target = pos == 0 ? head : null;
+    for (int i = 1; i < datas.length; i++) {
+      cur.next = new ListNode(Integer.parseInt(datas[i]));
+      if (i == pos) target = cur.next;
+      cur = cur.next;
+    }
+    cur.next = target;
+    return head;
+  }
+
+  /**
+   * @param data data1,data2,data3 ..
    * @return
    */
   public static int[] buildIntArray(String data) {
