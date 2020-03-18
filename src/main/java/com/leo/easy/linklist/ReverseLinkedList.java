@@ -4,6 +4,17 @@ import com.leo.structure.ListNode;
 import com.leo.utils.DataBuilder;
 import com.leo.utils.Printer;
 
+/**
+ * 206. 反转链表
+ *
+ * <p>反转一个单链表。
+ *
+ * <p>示例:
+ *
+ * <p>输入: 1->2->3->4->5->NULL
+ *
+ * <p>输出: 5->4->3->2->1->NULL
+ */
 public class ReverseLinkedList {
   public static void main(String[] args) {
     ListNode listNode = DataBuilder.buildListNode("1,2,3,4,5");
