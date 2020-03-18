@@ -35,7 +35,33 @@ public class IntersectionOfTwoLinkedLists {
 
   static class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-      return method1(headA, headB);
+      //      return method1(headA, headB);
+      return method2(headA, headB);
+    }
+
+    /**
+     * 双指针方法, 遍历 A+B
+     *
+     * <p>执行用时 : 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗 : 42.6 MB , 在所有 Java 提交中击败了 22.16% 的用户
+     *
+     * @param headA
+     * @param headB
+     * @return
+     */
+    private ListNode method2(ListNode headA, ListNode headB) {
+      if (headA == null || headB == null) return null;
+      ListNode p = headA;
+      ListNode q = headB;
+      while (p != q) {
+        p = p.next;
+        q = q.next;
+        if (p == null && q == null) return null;
+        if (p == null) p = headB;
+        if (q == null) q = headA;
+      }
+      return p;
     }
 
     /**
