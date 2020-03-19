@@ -16,9 +16,9 @@ import com.leo.utils.DataBuilder;
  */
 public class PalindromeLinkedList {
   public static void main(String[] args) {
-    //    ListNode listNode = DataBuilder.buildListNode("1,2,2,1");
+    ListNode listNode = DataBuilder.buildListNode("1,2,2,1");
     //    ListNode listNode = DataBuilder.buildListNode("1");
-    ListNode listNode = DataBuilder.buildListNode("1,0,1");
+    //    ListNode listNode = DataBuilder.buildListNode("1,0,1");
     boolean palindrome = new Solution().isPalindrome(listNode);
     System.out.println(palindrome);
   }
@@ -63,13 +63,13 @@ public class PalindromeLinkedList {
     }
 
     private ListNode findMidNode(ListNode head) {
-      ListNode f = head;
+      ListNode f = head.next;
       ListNode s = head;
-      while (f.next != null && f.next.next != null) {
+      while (f != null && f.next != null) {
         f = f.next.next;
         s = s.next;
       }
-      return s;
+      return f == null ? s : s.next;
     }
   }
 }
