@@ -28,8 +28,8 @@ public class RemoveDuplicatesFromSortedList {
 
   static class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-      ListNode p = head;
-      ListNode q = head;
+      ListNode p = head; // 遍历指针
+      ListNode q = head; // 修改结点指针(即删除操作)
       while (p != null) {
         while (p.next != null && p.val == p.next.val) p = p.next;
         q.next = p.next;
