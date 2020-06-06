@@ -36,15 +36,47 @@ public class RotateArray {
     public static void main(String[] args) {
 //        int[] nums = DataBuilder.buildIntArray("1,2,3,4,5,6,7");
 //        new Solution().rotate(nums, 3);
-        int[] nums = DataBuilder.buildIntArray("-1,-100,3,99"); // 3,99,-1,-100
-        new Solution().rotate(nums, 2);
-//        int[] nums = DataBuilder.buildIntArray("1,2");// 2,1
-//        new Solution().rotate(nums, 3);
+//        int[] nums = DataBuilder.buildIntArray("-1,-100,3,99"); // 3,99,-1,-100
+//        new Solution().rotate(nums, 2);
+        int[] nums = DataBuilder.buildIntArray("1,2");// 2,1
+        new Solution().rotate(nums, 3);
         Printer.printArray(nums);
     }
 
     static class Solution {
         public void rotate(int[] nums, int k) {
+            //            method1(nums, k);
+            method2(nums, k);
+        }
+
+        /**
+         * <p>执行用时 :0 ms, 在所有 Java 提交中击败了100.00%的用户
+         *
+         * <p>内存消耗 :40.4 MB, 在所有 Java 提交中击败了7.14%的用户
+         *
+         * @param nums
+         * @param k
+         */
+        private void method2(int[] nums, int k) {
+            if (nums == null || nums.length == 0) return;
+            reverse(nums, 0, nums.length - 1);
+            int mid = k % nums.length;
+            reverse(nums, 0, mid - 1);
+            reverse(nums, mid, nums.length - 1);
+        }
+
+
+        public void reverse(int[] nums, int l, int r) {
+            while (l <= r) {
+                int temp = nums[l];
+                nums[l] = nums[r];
+                nums[r] = temp;
+                l++;
+                r--;
+            }
+        }
+
+        private void method1(int[] nums, int k) {
             if (nums == null || nums.length == 1) {
                 return;
             }
