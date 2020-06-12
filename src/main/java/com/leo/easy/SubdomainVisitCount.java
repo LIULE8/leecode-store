@@ -31,7 +31,7 @@ public class SubdomainVisitCount {
   public static void main(String[] args) {
     String[] strings = DataBuilder.buildStringArray("9001 discuss.leetcode.com");
     List<String> list = new Solution().subdomainVisits(strings);
-    Printer.printList(list);
+    Printer.printStringList(list);
   }
 
   static class Solution {

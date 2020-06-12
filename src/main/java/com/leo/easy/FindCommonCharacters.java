@@ -36,7 +36,7 @@ public class FindCommonCharacters {
         String[] strings = DataBuilder.buildStringArray("bella", "label", "roller");
 //    String[] strings = DataBuilder.buildStringArray("cool", "lock", "cook");
     List<String> list = new Solution().commonChars(strings);
-    Printer.printList(list);
+    Printer.printStringList(list);
   }
 
   static class Solution {

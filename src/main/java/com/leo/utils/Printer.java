@@ -29,7 +29,11 @@ public class Printer {
     System.out.println(list.toString());
   }
 
-  public static void printList(List<String> list) {
+  public static void printStringList(List<String> list) {
+    System.out.println(list.toString());
+  }
+
+  public static void printIntegerList(List<Integer> list) {
     System.out.println(list.toString());
   }
 
