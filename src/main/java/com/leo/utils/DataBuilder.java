@@ -49,7 +49,7 @@ public class DataBuilder {
     String[] datas = data.split(",");
     int[] result = new int[datas.length];
     for (int i = 0; i < datas.length; i++) {
-      result[i] = Integer.parseInt(datas[i]);
+      result[i] = Integer.parseInt(datas[i].trim());
     }
     return result;
   }
