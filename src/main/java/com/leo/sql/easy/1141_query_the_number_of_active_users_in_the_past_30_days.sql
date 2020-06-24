@@ -51,5 +51,5 @@
 # 内存消耗：0B, 在所有 MySQL 提交中击败了100.00%的用户
 select a.activity_date as day, count(distinct a.user_id) as active_users
 from Activity a
-where a.activity_date between date_add('2019-07-27', interval -29 day) and '2019-07-27'
+where a.activity_date between date_sub('2019-07-27', interval 29 day) and '2019-07-27'
 group by a.activity_date;
