@@ -63,4 +63,9 @@ public class Printer {
   public static void printStringList(List<String> list) {
     System.out.println(list.toString());
   }
+
+
+  public static void printCorrectInt(int correct, int algorithm){
+    System.out.println("正确答案: " + correct +", 算法答案: " + algorithm);
+  }
 }
