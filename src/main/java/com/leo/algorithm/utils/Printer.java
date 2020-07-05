@@ -65,7 +65,7 @@ public class Printer {
   }
 
 
-  public static void printCorrectInt(int correct, int algorithm){
+  public static void printCorrectAnswer(Object correct, Object algorithm){
     System.out.println("正确答案: " + correct +", 算法答案: " + algorithm);
   }
 }

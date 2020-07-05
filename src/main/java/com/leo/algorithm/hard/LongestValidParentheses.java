@@ -26,10 +26,10 @@ import java.util.Stack;
 
 public class LongestValidParentheses {
   public static void main(String[] args) {
-    Printer.printCorrectInt(2, new Solution().longestValidParentheses("(()"));
-    Printer.printCorrectInt(4, new Solution().longestValidParentheses(")()())"));
-    Printer.printCorrectInt(6, new Solution().longestValidParentheses("()(())"));
-    Printer.printCorrectInt(2, new Solution().longestValidParentheses("()(()"));
+    Printer.printCorrectAnswer(2, new Solution().longestValidParentheses("(()"));
+    Printer.printCorrectAnswer(4, new Solution().longestValidParentheses(")()())"));
+    Printer.printCorrectAnswer(6, new Solution().longestValidParentheses("()(())"));
+    Printer.printCorrectAnswer(2, new Solution().longestValidParentheses("()(()"));
   }
 
   static class Solution {
