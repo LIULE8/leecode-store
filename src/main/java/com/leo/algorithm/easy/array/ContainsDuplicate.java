@@ -31,12 +31,23 @@ import java.util.Set;
 
 public class ContainsDuplicate {
   public static void main(String[] args) {
-    Printer.printCorrectAnswer(true, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,2,3,1")));
-    Printer.printCorrectAnswer(false, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,2,3,4")));
-    Printer.printCorrectAnswer(true, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,1,1,3,3,4,3,2,4,2")));
+    Printer.printCorrectAnswer(
+        true, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,2,3,1")));
+    Printer.printCorrectAnswer(
+        false, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,2,3,4")));
+    Printer.printCorrectAnswer(
+        true, new Solution().containsDuplicate(DataBuilder.buildIntArray("1,1,1,3,3,4,3,2,4,2")));
   }
 
   static class Solution {
+    /**
+     * 执行用时： 9 ms , 在所有 Java 提交中击败了 52.35% 的用户
+     *
+     * <p>内存消耗： 46 MB , 在所有 Java 提交中击败了 6.98% 的用户
+     *
+     * @param nums
+     * @return
+     */
     public boolean containsDuplicate(int[] nums) {
       if (nums == null || nums.length == 0) return false;
       Set<Integer> set = new HashSet<>();
