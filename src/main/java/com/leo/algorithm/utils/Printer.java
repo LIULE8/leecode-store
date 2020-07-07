@@ -64,8 +64,12 @@ public class Printer {
     System.out.println(list.toString());
   }
 
-
-  public static void printCorrectAnswer(Object correct, Object algorithm){
-    System.out.println("正确答案: " + correct +", 算法答案: " + algorithm);
+  public static void printCorrectAnswer(Object correct, Object algorithm) {
+    if (algorithm instanceof int[]) {
+      System.out.print("正确答案: " + correct + ", 算法答案: ");
+      Printer.printArray((int[]) algorithm);
+    } else {
+      System.out.println("正确答案: " + correct + ", 算法答案: " + algorithm);
+    }
   }
 }
