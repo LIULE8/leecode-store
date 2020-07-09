@@ -54,7 +54,61 @@ public class MaximumProductOfThreeNumbers {
 
     public int maximumProduct(int[] nums) {
       //      return method1(nums);
-      return method2(nums);
+      //      return method2(nums);
+      return method3(nums);
+    }
+
+    /**
+     * 冒泡最大的三个，和最小的三个
+     *
+     * <p>执行用时： 5 ms , 在所有 Java 提交中击败了 71.89% 的用户
+     *
+     * <p>内存消耗： 41.8 MB , 在所有 Java 提交中击败了 7.69% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method3(int[] nums) {
+      if (nums == null || nums.length == 0) {
+        return 0;
+      }
+
+      // 冒最大的三个
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < nums.length - 1 - i; j++) {
+          if (nums[j] > nums[j + 1]) {
+            int temp = nums[j];
+            nums[j] = nums[j + 1];
+            nums[j + 1] = temp;
+          }
+        }
+      }
+
+      for (int i = 0; i < 3; i++) {
+        for (int j = nums.length - 1 - i; j > 0; j--) {
+          if (nums[j] < nums[j - 1]) {
+            int temp = nums[j];
+            nums[j] = nums[j - 1];
+            nums[j - 1] = temp;
+          }
+        }
+      }
+
+      int[] newNums;
+      if (nums.length >= 6) {
+        newNums =
+            new int[] {
+              nums[0],
+              nums[1],
+              nums[2],
+              nums[nums.length - 3],
+              nums[nums.length - 2],
+              nums[nums.length - 1]
+            };
+      } else {
+        newNums = nums;
+      }
+      return method1(newNums);
     }
 
     /**
