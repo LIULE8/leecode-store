@@ -1,6 +1,7 @@
-package com.leo.algorithm.easy;
+package com.leo.algorithm.easy.array;
 
 import com.leo.algorithm.utils.DataBuilder;
+import com.leo.algorithm.utils.Printer;
 
 /**
  * 1217. 玩筹码
@@ -24,16 +25,13 @@ import com.leo.algorithm.utils.DataBuilder;
  * <p>提示：
  *
  * <p>1 <= chips.length <= 100 1 <= chips[i] <= 10^9
- *
- * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/play-with-chips
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class PlayWithChips {
   public static void main(String[] args) {
-//    int[] ints = DataBuilder.buildIntArray("1,2,3");
-    int[] ints = DataBuilder.buildIntArray("2,2,2,3,3");
-    int i = new Solution().minCostToMoveChips(ints);
-    System.out.println(i);
+    Printer.printCorrectAnswer(
+        "2", new Solution().minCostToMoveChips(DataBuilder.buildIntArray("2,2,2,3,3")));
+    Printer.printCorrectAnswer(
+        "1", new Solution().minCostToMoveChips(DataBuilder.buildIntArray("1,2,3")));
   }
 
   static class Solution {
