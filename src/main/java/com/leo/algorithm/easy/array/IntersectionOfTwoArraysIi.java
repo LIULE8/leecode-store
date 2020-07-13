@@ -37,9 +37,7 @@ package com.leo.algorithm.easy.array;
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class IntersectionOfTwoArraysIi {
   public static void main(String[] args) {
@@ -75,7 +73,37 @@ public class IntersectionOfTwoArraysIi {
 
   static class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-      return method1(nums1, nums2);
+      //      return method1(nums1, nums2);
+      return method2(nums1, nums2);
+    }
+
+    /**
+     * 执行用时： 4 ms , 在所有 Java 提交中击败了 57.14% 的用户
+     *
+     * <p>内存消耗： 40 MB , 在所有 Java 提交中击败了 5.13% 的用户
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    private int[] method2(int[] nums1, int[] nums2) {
+      Map<Integer, Integer> map = new HashMap<>();
+      List<Integer> list = new ArrayList<>();
+      for (int value : nums1) {
+        map.put(value, map.getOrDefault(value, 0) + 1);
+      }
+      for (int value : nums2) {
+        Integer integer = map.get(value);
+        if (integer != null && integer > 0) {
+          list.add(value);
+          map.put(value, map.get(value) - 1);
+        }
+      }
+      int[] result = new int[list.size()];
+      for (int i = 0; i < list.size(); i++) {
+        result[i] = list.get(i);
+      }
+      return result;
     }
 
     /**
