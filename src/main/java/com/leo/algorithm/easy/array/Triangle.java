@@ -38,6 +38,8 @@ public class Triangle {
         new Solution().minimumTotal(DataBuilder.buildDoubleList("[[2],[3,4],[6,5,7],[4,1,8,3]]")));
     Printer.printCorrectAnswer(
         "-1", new Solution().minimumTotal(DataBuilder.buildDoubleList("[[-1],[2,3],[1,-1,-3]]")));
+    Printer.printCorrectAnswer(
+        "12", new Solution().minimumTotal(DataBuilder.buildDoubleList("[[2],[3,4],[6,7,5],[4,1,8,3]]")));
   }
 
   static class Solution {
