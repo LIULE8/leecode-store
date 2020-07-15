@@ -107,4 +107,32 @@ public class DataBuilder {
     }
     return a;
   }
+
+  public static List<List<Integer>> buildDoubleList(String s) {
+    String[] split = s.split("],\\[");
+    List<List<Integer>> results = new ArrayList<>();
+    for (int i = 0; i < split.length; i++) {
+      List<Integer> list = new ArrayList<>();
+      results.add(list);
+      if (i == 0) {
+        String str = split[i].substring(2);
+        String[] sp = str.split(",");
+        for (String value : sp) {
+          list.add(Integer.parseInt(value));
+        }
+      } else if (i == split.length - 1) {
+        String str = split[i].substring(0, split[i].indexOf("]"));
+        String[] sp = str.split(",");
+        for (String value : sp) {
+          list.add(Integer.parseInt(value));
+        }
+      } else {
+        String[] sp = split[i].split(",");
+        for (String value : sp) {
+          list.add(Integer.parseInt(value));
+        }
+      }
+    }
+    return results;
+  }
 }
