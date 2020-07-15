@@ -42,21 +42,46 @@ public class NonDecreasingArray {
         false, new Solution().checkPossibility(DataBuilder.buildIntArray("4,2,1")));
     Printer.printCorrectAnswer(
         false, new Solution().checkPossibility(DataBuilder.buildIntArray("3,4,2,3")));
+    Printer.printCorrectAnswer(
+        true, new Solution().checkPossibility(DataBuilder.buildIntArray("1,1,1")));
   }
 
   static class Solution {
+    //  4，2，3
+    //  -1，4，2，3
+    //  2，3，3，2，4
+    // [1]有时候需要修改前面较大的数字(比如前两个例子需要修改4)，
+    // [2]有时候却要修改后面较小的那个数字(比如前第三个例子需要修改2)，
+    // 那么有什么内在规律吗？是有的，判断修改那个数字(i)其实跟再前面一个数(i-2)的大小有关系，
+    // 假设当前修改的数字是 2
+    // 首先如果再前面的数(i-2)不存在，比如例子1，4前面没有数字了，我们直接修改前面的数字为当前的数字2即可。
+    // 而当再前面的数字(i-2)存在，并且小于当前数(i)时，比如例子2，-1小于2，我们还是需要修改前面的数字4为当前数字2；
+    // 如果再前面的数(i-2)大于当前数(i)，比如例子3，3大于2，我们需要修改当前数2为前面的数3。
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 99.90% 的用户
+     *
+     * <p>内存消耗： 40.7 MB , 在所有 Java 提交中击败了 16.67% 的用户
+     *
+     * @param nums
+     * @return
+     */
     public boolean checkPossibility(int[] nums) {
       if (nums == null || nums.length == 0) return false;
       int count = 0;
-//      for (int i = 0; i < nums.length - 1; i++) {
-//        for (int j = i + 1; j < nums.length; j++) {
-//          if (nums[i] > nums[j]) {
-//            count++;
-//            if (count > 1) return false;
-//          }
-//        }
-//      }
-//      return true;
+      for (int i = 1; i < nums.length && count < 2; i++) {
+        if (nums[i - 1] <= nums[i]) {
+          continue;
+        }
+        // nums[i-1] > nums[i]
+        count++;
+        if (i - 2 < 0 || nums[i - 2] < nums[i]) {
+          nums[i - 1] = nums[i];
+        } else {
+          nums[i] = nums[i - 1];
+        }
+      }
+      return count < 2;
     }
   }
 }
