@@ -19,7 +19,7 @@
 // 输入: [1,1,1,3,3,4,3,2,4,2]
 // 输出: true
 // Related Topics 数组 哈希表
-// 👍 261 👎 0
+// 217. 存在重复元素
 
 package com.leo.algorithm.easy.array;
 
