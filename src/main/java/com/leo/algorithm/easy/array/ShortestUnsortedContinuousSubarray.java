@@ -34,7 +34,41 @@ public class ShortestUnsortedContinuousSubarray {
 
   static class Solution {
     public int findUnsortedSubarray(int[] nums) {
-      return method(nums);
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 255 ms , 在所有 Java 提交中击败了 6.84% 的用户
+     *
+     * <p>内存消耗： 40.6 MB , 在所有 Java 提交中击败了 23.81% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      if (nums == null || nums.length == 0) return 0;
+      int minIndex = nums.length - 1;
+      int maxIndex = 0;
+      // 找最小下标
+      for (int i = 0; i < nums.length - 1; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+          if (nums[i] > nums[j]) {
+            minIndex = Math.min(minIndex, i);
+            break;
+          }
+        }
+      }
+      // 找最大下标
+      for (int i = nums.length - 1; i >= 1; i--) {
+        for (int j = i - 1; j >= 0; j--) {
+          if (nums[i] < nums[j]) {
+            maxIndex = Math.max(maxIndex, i);
+            break;
+          }
+        }
+      }
+      return maxIndex > minIndex ? maxIndex - minIndex + 1 : 0;
     }
 
     /**
@@ -45,7 +79,7 @@ public class ShortestUnsortedContinuousSubarray {
      * @param nums
      * @return
      */
-    private int method(int[] nums) {
+    private int method1(int[] nums) {
       if (nums == null || nums.length == 0) return 0;
       int minIndex = nums.length - 1;
       int maxIndex = 0;
