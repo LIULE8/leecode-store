@@ -29,22 +29,22 @@ import java.util.Stack;
 
 public class ShortestUnsortedContinuousSubarray {
   public static void main(String[] args) {
-    Printer.printCorrectAnswer(
-        5, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,6,4,8,10,9,15")));
-    Printer.printCorrectAnswer(
-        0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,4")));
-    Printer.printCorrectAnswer(
-        0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,3,3")));
-    Printer.printCorrectAnswer(
-        4, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,2,2")));
-    Printer.printCorrectAnswer(
-        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,3,3")));
-    Printer.printCorrectAnswer(
-        3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,3,3,2,4")));
+    //    Printer.printCorrectAnswer(
+    //        5, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,6,4,8,10,9,15")));
+    //    Printer.printCorrectAnswer(
+    //        0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,4")));
+    //    Printer.printCorrectAnswer(
+    //        0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,3,3")));
+    //    Printer.printCorrectAnswer(
+    //        4, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,2,2")));
+    //    Printer.printCorrectAnswer(
+    //        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,3,3")));
+    //    Printer.printCorrectAnswer(
+    //        3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,3,3,2,4")));
+    //    Printer.printCorrectAnswer(
+    //        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,1")));
     Printer.printCorrectAnswer(
         3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,4,5,3")));
-    Printer.printCorrectAnswer(
-        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,1")));
   }
 
   static class Solution {
@@ -52,7 +52,31 @@ public class ShortestUnsortedContinuousSubarray {
       //      return method1(nums);
       //      return method2(nums);
       //      return method3(nums);
-      return method4(nums);
+      //      return method4(nums);
+      return method5(nums);
+    }
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 41 MB , 在所有 Java 提交中击败了 14.29% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method5(int[] nums) {
+      if (nums == null || nums.length == 0) return 0;
+      int minIndex = nums.length - 1, maxIndex = 0;
+      int last_max = nums[0];
+      for (int i = 1; i < nums.length; i++) {
+        // 发现逆序对，当前位置 i 就是右边界，同时往回找左边界
+        if (last_max > nums[i]) {
+          maxIndex = i;
+          minIndex = Math.min(minIndex, i - 1);
+          while (minIndex >= 0 && nums[minIndex] > nums[i]) minIndex--;
+        } else last_max = nums[i];
+      }
+      return minIndex > maxIndex ? 0 : maxIndex - minIndex;
     }
 
     /**
@@ -72,8 +96,7 @@ public class ShortestUnsortedContinuousSubarray {
     private int method4(int[] nums) {
       if (nums == null || nums.length == 0) return 0;
       Stack<Integer> stack = new Stack<>();
-      int minIndex = nums.length - 1;
-      int maxIndex = 0;
+      int minIndex = nums.length - 1, maxIndex = 0;
       for (int i = 0; i < nums.length; i++) {
         while (!stack.empty() && nums[stack.peek()] > nums[i]) {
           minIndex = Math.min(minIndex, stack.pop());
@@ -106,8 +129,7 @@ public class ShortestUnsortedContinuousSubarray {
       if (nums == null || nums.length == 0) return 0;
       int[] clone = nums.clone();
       Arrays.sort(clone);
-      int minIndex = nums.length - 1;
-      int maxIndex = 0;
+      int minIndex = nums.length - 1, maxIndex = 0;
       for (int i = 0; i < clone.length; i++) {
         if (nums[i] != clone[i]) {
           minIndex = Math.min(minIndex, i);
@@ -127,8 +149,7 @@ public class ShortestUnsortedContinuousSubarray {
      */
     private int method2(int[] nums) {
       if (nums == null || nums.length == 0) return 0;
-      int minIndex = nums.length - 1;
-      int maxIndex = 0;
+      int minIndex = nums.length - 1, maxIndex = 0;
       // 找最小下标
       for (int i = 0; i < nums.length - 1; i++) {
         for (int j = i + 1; j < nums.length; j++) {
@@ -160,8 +181,7 @@ public class ShortestUnsortedContinuousSubarray {
      */
     private int method1(int[] nums) {
       if (nums == null || nums.length == 0) return 0;
-      int maxIndex = 0;
-      int minIndex = nums.length - 1;
+      int maxIndex = 0, minIndex = nums.length - 1;
       for (int i = 0; i < nums.length - 1; i++) {
         for (int j = i + 1; j < nums.length; j++) {
           if (nums[i] > nums[j]) {
