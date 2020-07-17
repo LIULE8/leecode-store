@@ -25,6 +25,7 @@ import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class ShortestUnsortedContinuousSubarray {
   public static void main(String[] args) {
@@ -42,13 +43,51 @@ public class ShortestUnsortedContinuousSubarray {
         3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,3,3,2,4")));
     Printer.printCorrectAnswer(
         3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,4,5,3")));
+    Printer.printCorrectAnswer(
+        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,1")));
   }
 
   static class Solution {
     public int findUnsortedSubarray(int[] nums) {
-      //            return method1(nums);
-      //            return method2(nums);
-      return method3(nums);
+      //      return method1(nums);
+      //      return method2(nums);
+      //      return method3(nums);
+      return method4(nums);
+    }
+
+    /**
+     * method2的改进
+     *
+     * <p>执行用时： 19 ms , 在所有 Java 提交中击败了 14.78% 的用户
+     *
+     * <p>内存消耗： 40.7 MB , 在所有 Java 提交中击败了 19.05% 的用户
+     *
+     * <p>时间复杂度：O(n)O(n)。需要遍历数组一遍，栈的时间复杂度也为 O(n)O(n)。
+     *
+     * <p>空间复杂度：O(n)O(n)。栈的大小最大达到 nn。
+     *
+     * @param nums
+     * @return
+     */
+    private int method4(int[] nums) {
+      if (nums == null || nums.length == 0) return 0;
+      Stack<Integer> stack = new Stack<>();
+      int minIndex = nums.length - 1;
+      int maxIndex = 0;
+      for (int i = 0; i < nums.length; i++) {
+        while (!stack.empty() && nums[stack.peek()] > nums[i]) {
+          minIndex = Math.min(minIndex, stack.pop());
+        }
+        stack.push(i);
+      }
+      stack.clear();
+      for (int i = nums.length - 1; i >= 0; i--) {
+        while (!stack.empty() && nums[stack.peek()] < nums[i]) {
+          maxIndex = Math.max(maxIndex, stack.pop());
+        }
+        stack.push(i);
+      }
+      return maxIndex > minIndex ? maxIndex - minIndex + 1 : 0;
     }
 
     /**
@@ -59,7 +98,6 @@ public class ShortestUnsortedContinuousSubarray {
      * <p>时间复杂度：O(n\log n)O(nlogn) 。排序消耗 n\log nnlogn 的时间。
      *
      * <p>空间复杂度：O(n)O(n) 。我们拷贝了一份原数组来进行排序。
-     *
      *
      * @param nums
      * @return
