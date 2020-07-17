@@ -24,18 +24,59 @@ package com.leo.algorithm.easy.array;
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
 
+import java.util.Arrays;
+
 public class ShortestUnsortedContinuousSubarray {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(
         5, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,6,4,8,10,9,15")));
     Printer.printCorrectAnswer(
         0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,4")));
+    Printer.printCorrectAnswer(
+        0, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,3,3,3")));
+    Printer.printCorrectAnswer(
+        4, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,2,2")));
+    Printer.printCorrectAnswer(
+        2, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,3,2,3,3")));
+    Printer.printCorrectAnswer(
+        3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("2,3,3,2,4")));
+    Printer.printCorrectAnswer(
+        3, new Solution().findUnsortedSubarray(DataBuilder.buildIntArray("1,2,4,5,3")));
   }
 
   static class Solution {
     public int findUnsortedSubarray(int[] nums) {
-      //      return method1(nums);
-      return method2(nums);
+      //            return method1(nums);
+      //            return method2(nums);
+      return method3(nums);
+    }
+
+    /**
+     * 执行用时： 8 ms , 在所有 Java 提交中击败了 46.88% 的用户
+     *
+     * <p>内存消耗： 40.9 MB , 在所有 Java 提交中击败了 19.05% 的用户
+     *
+     * <p>时间复杂度：O(n\log n)O(nlogn) 。排序消耗 n\log nnlogn 的时间。
+     *
+     * <p>空间复杂度：O(n)O(n) 。我们拷贝了一份原数组来进行排序。
+     *
+     *
+     * @param nums
+     * @return
+     */
+    private int method3(int[] nums) {
+      if (nums == null || nums.length == 0) return 0;
+      int[] clone = nums.clone();
+      Arrays.sort(clone);
+      int minIndex = nums.length - 1;
+      int maxIndex = 0;
+      for (int i = 0; i < clone.length; i++) {
+        if (nums[i] != clone[i]) {
+          minIndex = Math.min(minIndex, i);
+          maxIndex = Math.max(maxIndex, i);
+        }
+      }
+      return maxIndex > minIndex ? maxIndex - minIndex + 1 : 0;
     }
 
     /**
@@ -81,16 +122,13 @@ public class ShortestUnsortedContinuousSubarray {
      */
     private int method1(int[] nums) {
       if (nums == null || nums.length == 0) return 0;
-      int minIndex = nums.length - 1;
       int maxIndex = 0;
+      int minIndex = nums.length - 1;
       for (int i = 0; i < nums.length - 1; i++) {
         for (int j = i + 1; j < nums.length; j++) {
           if (nums[i] > nums[j]) {
             minIndex = Math.min(minIndex, i);
             maxIndex = Math.max(maxIndex, j);
-            int temp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = temp;
           }
         }
       }
