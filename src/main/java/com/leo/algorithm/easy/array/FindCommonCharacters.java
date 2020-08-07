@@ -1,4 +1,4 @@
-package com.leo.algorithm.easy;
+package com.leo.algorithm.easy.array;
 
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
@@ -28,8 +28,6 @@ import java.util.Map;
  *
  * <p>1 <= A.length <= 100 1 <= A[i].length <= 100 A[i][j] 是小写字母
  *
- * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/find-common-characters
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class FindCommonCharacters {
   public static void main(String[] args) {
