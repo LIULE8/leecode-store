@@ -44,6 +44,31 @@ public class LongestContinuousIncreasingSubsequence {
   }
 
   static class Solution {
+
+    public int findLengthOfLCIS(int[] nums) {
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 99.80% 的用户
+     *
+     * <p>内存消耗： 40.1 MB , 在所有 Java 提交中击败了 97.44% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      if (nums.length <= 1) return nums.length;
+      int index = 0, max = 0, i = 0;
+      for (; i < nums.length; i++) {
+        if (i > 0 && nums[i - 1] < nums[i]) continue;
+        max = Math.max(max, i - index);
+        index = i;
+      }
+      return Math.max(max, i - index);
+    }
+
     /**
      * 执行用时： 2 ms , 在所有 Java 提交中击败了 48.00% 的用户
      *
@@ -52,7 +77,7 @@ public class LongestContinuousIncreasingSubsequence {
      * @param nums
      * @return
      */
-    public int findLengthOfLCIS(int[] nums) {
+    private int method1(int[] nums) {
       if (nums.length <= 1) return nums.length;
       int count = 1, max = 1;
       for (int i = 0; i < nums.length - 1; i++) {
