@@ -33,27 +33,34 @@ public class LongestContinuousIncreasingSubsequence {
     Printer.printCorrectAnswer(
         3, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("1,3,5,4,7")));
     Printer.printCorrectAnswer(
+        2, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("3,2,2,2,3")));
+    Printer.printCorrectAnswer(
         1, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("2,2,2,2,2")));
     Printer.printCorrectAnswer(
-        0, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("7,5,3,1")));
+        2, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("1,2,2,3,3")));
     Printer.printCorrectAnswer(
         3, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("1,3,5,5,7")));
     Printer.printCorrectAnswer(1, new Solution().findLengthOfLCIS(DataBuilder.buildIntArray("1")));
   }
 
   static class Solution {
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 48.00% 的用户
+     *
+     * <p>内存消耗： 40.2 MB , 在所有 Java 提交中击败了 94.73% 的用户
+     *
+     * @param nums
+     * @return
+     */
     public int findLengthOfLCIS(int[] nums) {
-      if (nums == null || nums.length == 0) return 0;
-//      if (nums.length == 1) return 1;
-      int index = 0, max = 0, count = 0;
-      for (int i = 1; i < nums.length; i++) {
-        if (nums[i - 1] >= nums[i]) {
-          max = Math.max(max, i - index);
-          if (nums[i - 1] > nums[i]) count++;
-          index = i;
-        }
+      if (nums.length <= 1) return nums.length;
+      int count = 1, max = 1;
+      for (int i = 0; i < nums.length - 1; i++) {
+        if (nums[i + 1] > nums[i]) count++;
+        else count = 1;
+        max = Math.max(max, count);
       }
-      return nums.length == count + 1 ? 0 : max;
+      return max;
     }
   }
 }
