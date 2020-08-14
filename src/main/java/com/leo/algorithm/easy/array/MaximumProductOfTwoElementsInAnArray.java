@@ -48,12 +48,36 @@ public class MaximumProductOfTwoElementsInAnArray {
     Printer.printCorrectAnswer(12, new Solution().maxProduct(DataBuilder.buildIntArray("3,4,5,2")));
     Printer.printCorrectAnswer(16, new Solution().maxProduct(DataBuilder.buildIntArray("1,5,4,5")));
     Printer.printCorrectAnswer(12, new Solution().maxProduct(DataBuilder.buildIntArray("3,7")));
+    Printer.printCorrectAnswer(
+        49, new Solution().maxProduct(DataBuilder.buildIntArray("8,8,7,4,2,8,1,7,7")));
   }
 
   static class Solution {
     public int maxProduct(int[] nums) {
       //      return method1(nums);
-      return method2(nums);
+      //      return method2(nums);
+      return method3(nums);
+    }
+
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 65.08% 的用户
+     *
+     * <p>内存消耗： 39.1 MB , 在所有 Java 提交中击败了 95.79% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method3(int[] nums) {
+      for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < nums.length - 1; j++) {
+          if (nums[j] > nums[j + 1]) {
+            int temp = nums[j];
+            nums[j] = nums[j + 1];
+            nums[j + 1] = temp;
+          }
+        }
+      }
+      return (nums[nums.length - 2] - 1) * (nums[nums.length - 1] - 1);
     }
 
     /**
