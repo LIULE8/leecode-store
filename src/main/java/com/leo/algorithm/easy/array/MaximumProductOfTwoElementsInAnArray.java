@@ -59,15 +59,14 @@ public class MaximumProductOfTwoElementsInAnArray {
     /**
      * 执行用时： 2 ms , 在所有 Java 提交中击败了 65.08% 的用户
      *
-     * <p>内存消耗： 39.3 MB , 在所有 Java 提交中击败了 69.40% 的用户
+     * <p>内存消耗： 39.3 MB , 在所有 Java 提交中击败了 76.27% 的用户
      *
      * @param nums
      * @return
      */
     private int method2(int[] nums) {
       Arrays.sort(nums);
-      return Math.max(
-          (nums[0] - 1) * (nums[1] - 1), (nums[nums.length - 2] - 1) * (nums[nums.length - 1] - 1));
+      return (nums[nums.length - 2] - 1) * (nums[nums.length - 1] - 1);
     }
 
     /**
