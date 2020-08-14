@@ -66,6 +66,32 @@ public class MinimumValueToGetPositiveStepByStepSum {
   }
 
   static class Solution {
+
+    public int minStartValue(int[] nums) {
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 37.3 MB , 在所有 Java 提交中击败了 13.71% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      if (nums == null || nums.length == 0) return 1;
+      int startValue = 1, sum = 0;
+      for (int num : nums) {
+        sum += num;
+        if (sum + startValue < 1) {
+          startValue = (1 - sum);
+        }
+      }
+      return startValue;
+    }
+
     /**
      * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
@@ -74,7 +100,7 @@ public class MinimumValueToGetPositiveStepByStepSum {
      * @param nums
      * @return
      */
-    public int minStartValue(int[] nums) {
+    private int method1(int[] nums) {
       if (nums == null || nums.length == 0) return 1;
       int result = 0, tempResult = result;
       for (int i = 0; i < nums.length; i++) {
