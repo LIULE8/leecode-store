@@ -54,28 +54,38 @@ import com.leo.algorithm.utils.Printer;
 
 public class MinimumValueToGetPositiveStepByStepSum {
   public static void main(String[] args) {
-//    Printer.printCorrectAnswer(
-//        5, new Solution().minStartValue(DataBuilder.buildIntArray("-3,2,-3,4,2")));
-//    Printer.printCorrectAnswer(1, new Solution().minStartValue(DataBuilder.buildIntArray("1,2")));
-//    Printer.printCorrectAnswer(
-//        5, new Solution().minStartValue(DataBuilder.buildIntArray("1,-2,-3")));
+    Printer.printCorrectAnswer(
+        5, new Solution().minStartValue(DataBuilder.buildIntArray("-3,2,-3,4,2")));
+    Printer.printCorrectAnswer(1, new Solution().minStartValue(DataBuilder.buildIntArray("1,2")));
     Printer.printCorrectAnswer(
         8, new Solution().minStartValue(DataBuilder.buildIntArray("-5,-2,4,4,-2")));
+    Printer.printCorrectAnswer(
+        5, new Solution().minStartValue(DataBuilder.buildIntArray("1,-2,-3")));
+    Printer.printCorrectAnswer(
+        1, new Solution().minStartValue(DataBuilder.buildIntArray("2,3,5,-5,-1")));
   }
 
   static class Solution {
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 37.1 MB , 在所有 Java 提交中击败了 54.03% 的用户
+     *
+     * @param nums
+     * @return
+     */
     public int minStartValue(int[] nums) {
-      if (nums == null || nums.length == 0) return 0;
-      int result = nums[0] < 0 ? 1 - nums[0] : nums[0];
-      int sum = result + nums[0];
-      int min = 1;
-      for (int i = 1; i < nums.length; i++) {
-        sum += nums[i];
-        if (sum < 1) min = Math.min(min, sum);
+      if (nums == null || nums.length == 0) return 1;
+      int result = 0, tempResult = result;
+      for (int i = 0; i < nums.length; i++) {
+        tempResult += nums[i];
+        if (tempResult < 1) {
+          result += (1 - tempResult);
+          i = -1;
+          tempResult = result;
+        }
       }
-      if (min < 0) return 2 - min;
-      else if (min == 0) return 1 + result;
-      else return 1;
+      return Math.max(result, 1);
     }
   }
 }
