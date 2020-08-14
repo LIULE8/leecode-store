@@ -41,6 +41,8 @@ package com.leo.algorithm.easy.array;
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
 
+import java.util.Arrays;
+
 public class MaximumProductOfTwoElementsInAnArray {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(12, new Solution().maxProduct(DataBuilder.buildIntArray("3,4,5,2")));
@@ -50,7 +52,22 @@ public class MaximumProductOfTwoElementsInAnArray {
 
   static class Solution {
     public int maxProduct(int[] nums) {
-      return method1(nums);
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 65.08% 的用户
+     *
+     * <p>内存消耗： 39.3 MB , 在所有 Java 提交中击败了 69.40% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      Arrays.sort(nums);
+      return Math.max(
+          (nums[0] - 1) * (nums[1] - 1), (nums[nums.length - 2] - 1) * (nums[nums.length - 1] - 1));
     }
 
     /**
