@@ -82,6 +82,31 @@ public class MonotonicArray {
      * @return
      */
     public boolean isMonotonic(int[] A) {
+      //      return method1(A);
+      return method2(A);
+    }
+
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 45.96% 的用户
+     *
+     * <p>内存消耗： 48 MB , 在所有 Java 提交中击败了 17.98% 的用户
+     *
+     * @param A
+     * @return
+     */
+    private boolean method2(int[] A) {
+      int lastFlag = 0;
+      for (int i = 0; i < A.length - 1; i++) {
+        int compare = Integer.compare(A[i], A[i + 1]);
+        if (compare != 0) {
+          if (compare != lastFlag && lastFlag != 0) return false;
+          lastFlag = compare;
+        }
+      }
+      return true;
+    }
+
+    private boolean method1(int[] A) {
       return increase(A) || decrease(A);
     }
 
