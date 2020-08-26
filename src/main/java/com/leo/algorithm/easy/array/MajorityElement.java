@@ -16,9 +16,6 @@ import java.util.Arrays;
  * <p>输入: [3,2,3] 输出: 3 示例 2:
  *
  * <p>输入: [2,2,1,1,1,2,2] 输出: 2
- *
- * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/majority-element
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class MajorityElement {
   public static void main(String[] args) {
@@ -43,7 +40,7 @@ public class MajorityElement {
           count++;
         } else {
           count--;
-          if (count == 0) {
+          if (count == 0 && i + 1 < nums.length) {
             num = nums[i + 1];
           }
         }
