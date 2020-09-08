@@ -80,7 +80,7 @@ public class DataBuilder {
 
   public static int[][] buildDoubleArray(String s) {
     //    s = s.substring(s.lastIndexOf("]]"));
-    String[] split = s.split("],\\s+\\[");
+    String[] split = s.split("],\\s*\\[");
     int[][] a = new int[split.length][];
     for (int i = 0; i < split.length; i++) {
       if (i == 0) {
