@@ -15,9 +15,6 @@ import com.leo.algorithm.utils.DataBuilder;
  * 注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格。 示例 2:
  *
  * <p>输入: [7,6,4,3,1] 输出: 0 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
- *
- * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class BestTimeToBuyAndSellStock {
   public static void main(String[] args) {
@@ -30,7 +27,7 @@ public class BestTimeToBuyAndSellStock {
   static class Solution {
     public int maxProfit(int[] prices) {
       //      return method1(prices);
-//      return method2(prices);
+      //      return method2(prices);
       return method3(prices);
     }
 
@@ -39,8 +36,8 @@ public class BestTimeToBuyAndSellStock {
       int dp = prices[0];
       int res = 0;
       for (int i = 1; i < prices.length; i++) {
-         dp = Math.min(prices[i], dp);
-         res = Math.max(res, prices[i] - dp);
+        dp = Math.min(prices[i], dp);
+        res = Math.max(res, prices[i] - dp);
       }
       return res;
     }

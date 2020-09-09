@@ -20,9 +20,6 @@ import com.leo.algorithm.utils.DataBuilder;
  *   注意你不能在第 1 天和第 2 天接连购买股票，之后再将它们卖出。   因为这样属于同时参与了多笔交易，你必须在再次购买前出售掉之前的股票。 示例 3:
  *
  * <p>输入: [7,6,4,3,1] 输出: 0 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
- *
- * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class BestTimeToBuyAndSellStockIi {
   public static void main(String[] args) {
@@ -45,6 +42,7 @@ public class BestTimeToBuyAndSellStockIi {
 
     /**
      * 动态规划
+     *
      * @param prices
      * @return
      */
@@ -54,10 +52,10 @@ public class BestTimeToBuyAndSellStockIi {
       dp[0][0] = 0; // 卖出
       dp[0][1] = -prices[0]; // 买入
       for (int i = 1; i < prices.length; i++) {
-                          // 前一天卖出价和 今天卖出价哪个高
-                          // 今天卖出价： 前天买入价(负数) + 今天卖出价
+        // 前一天卖出价和 今天卖出价哪个高
+        // 今天卖出价： 前天买入价(负数) + 今天卖出价
         dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]); // 卖出
-//        "7,1,5,3,6,4"
+        //        "7,1,5,3,6,4"
         dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]); // 买入
       }
       // 最后一天买入，肯定没有最后一天卖出的高，所以直接返回最后一天卖出
