@@ -79,30 +79,15 @@ public class DataBuilder {
   }
 
   public static int[][] buildDoubleArray(String s) {
-    //    s = s.substring(s.lastIndexOf("]]"));
+    s = s.replace("[[", "");
+    s = s.replace("]]", "");
     String[] split = s.split("],\\s*\\[");
     int[][] a = new int[split.length][];
     for (int i = 0; i < split.length; i++) {
-      if (i == 0) {
-        String str = split[i].substring(2);
-        String[] sp = str.split(",");
-        a[i] = new int[sp.length];
-        for (int j = 0; j < sp.length; j++) {
-          a[i][j] = Integer.parseInt(sp[j].trim());
-        }
-      } else if (i == split.length - 1) {
-        String str = split[i].substring(0, split[i].indexOf("]"));
-        String[] sp = str.split(",");
-        a[i] = new int[sp.length];
-        for (int j = 0; j < sp.length; j++) {
-          a[i][j] = Integer.parseInt(sp[j].trim());
-        }
-      } else {
-        String[] sp = split[i].split(",");
-        a[i] = new int[sp.length];
-        for (int j = 0; j < sp.length; j++) {
-          a[i][j] = Integer.parseInt(sp[j].trim());
-        }
+      String[] sp = split[i].split(",");
+      a[i] = new int[sp.length];
+      for (int j = 0; j < sp.length; j++) {
+        a[i][j] = Integer.parseInt(sp[j].trim());
       }
     }
     return a;
