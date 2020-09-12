@@ -64,6 +64,10 @@ public class Printer {
     System.out.println(list.toString());
   }
 
+  public static void printBooleanList(List<Boolean> list) {
+    System.out.println(list.toString());
+  }
+
   public static void printCorrectAnswer(Object correct, Object algorithm) {
     if (algorithm instanceof int[]) {
       System.out.print("正确答案: " + correct + ", 算法答案: ");
