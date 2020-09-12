@@ -49,6 +49,35 @@ public class SumOfDigitsInTheMinimumNumber {
   }
 
   static class Solution {
+
+    public int sumOfDigits(int[] A) {
+      //      return method1(A);
+      return method2(A);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 37.1 MB , 在所有 Java 提交中击败了 98.57% 的用户
+     *
+     * @param A
+     * @return
+     */
+    private int method2(int[] A) {
+      int min = Integer.MAX_VALUE;
+      for (int j : A) {
+        if (j < min) {
+          min = j;
+        }
+      }
+      int sum = 0;
+      while (min != 0) {
+        sum += min % 10;
+        min /= 10;
+      }
+      return sum % 2 == 0 ? 1 : 0;
+    }
+
     /**
      * 执行用时： 1 ms , 在所有 Java 提交中击败了 25.19% 的用户
      *
@@ -57,7 +86,7 @@ public class SumOfDigitsInTheMinimumNumber {
      * @param A
      * @return
      */
-    public int sumOfDigits(int[] A) {
+    private int method1(int[] A) {
       Arrays.sort(A);
       int k = A[0];
       int sum = 0;
