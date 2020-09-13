@@ -73,14 +73,7 @@ public class MonotonicArray {
   }
 
   static class Solution {
-    /**
-     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
-     *
-     * <p>内存消耗： 47.6 MB , 在所有 Java 提交中击败了 68.42% 的用户
-     *
-     * @param A
-     * @return
-     */
+
     public boolean isMonotonic(int[] A) {
       //      return method1(A);
       return method2(A);
@@ -106,6 +99,14 @@ public class MonotonicArray {
       return true;
     }
 
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 47.6 MB , 在所有 Java 提交中击败了 68.42% 的用户
+     *
+     * @param A
+     * @return
+     */
     private boolean method1(int[] A) {
       return increase(A) || decrease(A);
     }
