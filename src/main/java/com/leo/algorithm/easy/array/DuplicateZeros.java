@@ -47,6 +47,19 @@ public class DuplicateZeros {
   }
 
   static class Solution {
+
+    public void duplicateZeros(int[] arr) {
+      //      method1(arr);
+      method2(arr);
+    }
+
+    /**
+     * 原地算法 -- 未完成
+     *
+     * @param arr
+     */
+    private void method2(int[] arr) {}
+
     /**
      * 执行用时： 1 ms , 在所有 Java 提交中击败了 97.36% 的用户
      *
@@ -54,7 +67,7 @@ public class DuplicateZeros {
      *
      * @param arr
      */
-    public void duplicateZeros(int[] arr) {
+    private void method1(int[] arr) {
       int[] clone = new int[arr.length << 1];
       int k = 0;
       for (int num : arr) {
