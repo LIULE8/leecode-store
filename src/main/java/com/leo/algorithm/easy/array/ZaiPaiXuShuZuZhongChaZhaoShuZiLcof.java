@@ -41,7 +41,30 @@ public class ZaiPaiXuShuZuZhongChaZhaoShuZiLcof {
   static class Solution {
     public int search(int[] nums, int target) {
       //      return method1(nums, target);
-      return method2(nums, target);
+      //      return method2(nums, target);
+      return method3(nums, target);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 42.5 MB , 在所有 Java 提交中击败了 72.88% 的用户
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    private int method3(int[] nums, int target) {
+      int l = 0;
+      int r = nums.length - 1;
+      while (l <= r) {
+        int mid = (l + r) >> 1;
+        if (nums[mid] >= target) r = mid - 1;
+        else if (nums[mid] < target) l = mid + 1;
+      }
+      int count = 0;
+      while (l < nums.length && nums[l++] == target) count++;
+      return count;
     }
 
     /**
