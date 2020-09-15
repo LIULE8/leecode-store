@@ -76,7 +76,35 @@ public class DietPlanPerformance {
 
   static class Solution {
     public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
-      return method1(calories, k, lower, upper);
+      //      return method1(calories, k, lower, upper);
+      return method2(calories, k, lower, upper);
+    }
+
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 79.78% 的用户
+     *
+     * <p>内存消耗： 46.5 MB , 在所有 Java 提交中击败了 70.59% 的用户
+     *
+     * @param calories
+     * @param k
+     * @param lower
+     * @param upper
+     * @return
+     */
+    private int method2(int[] calories, int k, int lower, int upper) {
+      int count = 0;
+      int[] res = new int[calories.length - k + 1];
+      for (int i = 0; i < k; i++) {
+        res[0] += calories[i];
+      }
+      for (int i = 1; i + k - 1 < calories.length; i++) {
+        res[i] = res[i - 1] - calories[i - 1] + calories[i + k - 1];
+      }
+      for (int num : res) {
+        if (num < lower) count--;
+        else if (num > upper) count++;
+      }
+      return count;
     }
 
     /**
