@@ -62,6 +62,14 @@ import com.leo.algorithm.utils.Printer;
 public class DetectPatternOfLengthMRepeatedKOrMoreTimes {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(
+        true,
+        new Solution()
+            .containsPattern(DataBuilder.buildIntArray("3,2,2,1,2,2,1,1,1,2,3,2,2"), 3, 2));
+    Printer.printCorrectAnswer(
+        true, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,4,4,4,4"), 1, 3));
+    Printer.printCorrectAnswer(
+        false, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,3,1,2"), 2, 2));
+    Printer.printCorrectAnswer(
         false,
         new Solution()
             .containsPattern(
@@ -69,19 +77,11 @@ public class DetectPatternOfLengthMRepeatedKOrMoreTimes {
                 1,
                 5));
     Printer.printCorrectAnswer(
-        true, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,4,4,4,4"), 1, 3));
-    Printer.printCorrectAnswer(
         true, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,1,2,1,1,1,3"), 2, 2));
     Printer.printCorrectAnswer(
         false, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,1,2,1,3"), 2, 3));
     Printer.printCorrectAnswer(
-        false, new Solution().containsPattern(DataBuilder.buildIntArray("1,2,3,1,2"), 2, 2));
-    Printer.printCorrectAnswer(
         false, new Solution().containsPattern(DataBuilder.buildIntArray("2,2,2,2"), 2, 3));
-    Printer.printCorrectAnswer(
-        true,
-        new Solution()
-            .containsPattern(DataBuilder.buildIntArray("3,2,2,1,2,2,1,1,1,2,3,2,2"), 3, 2));
     Printer.printCorrectAnswer(
         false,
         new Solution()
@@ -92,17 +92,39 @@ public class DetectPatternOfLengthMRepeatedKOrMoreTimes {
   }
 
   static class Solution {
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 44.84% 的用户
+     *
+     * <p>内存消耗： 39.5 MB , 在所有 Java 提交中击败了 8.33% 的用户
+     *
+     * @param arr
+     * @param m
+     * @param k
+     * @return
+     */
     public boolean containsPattern(int[] arr, int m, int k) {
       int count = 1;
-      int sum = 0;
-      for (int i = 0; i < m; i++) {
-        sum += arr[i];
+      String s = getString(arr, m, 0);
+      for (int i = m; i + m - 1 < arr.length; i += m) {
+        String tempS = getString(arr, m, i);
+        if (s.equals(tempS)) {
+          count++;
+          if (count >= k) return true;
+        } else {
+          count = 1;
+          i = i + 1 - m;
+          s = getString(arr, m, i);
+        }
       }
-      for (int i = m; i + m - 1 < arr.length; i++) {
-
-      }
-
       return count >= k;
+    }
+
+    private String getString(int[] arr, int m, int start) {
+      StringBuilder sb = new StringBuilder();
+      for (int i = start; i < m + start && i < arr.length; i++) {
+        sb.append(arr[i]);
+      }
+      return sb.toString();
     }
   }
 }
