@@ -52,14 +52,56 @@
 
 package com.leo.algorithm.easy.array;
 
+import com.leo.algorithm.utils.DataBuilder;
+import com.leo.algorithm.utils.Printer;
+
 public class DietPlanPerformance {
   public static void main(String[] args) {
-    Solution solution = new Solution();
+    Printer.printCorrectAnswer(
+        0, new Solution().dietPlanPerformance(DataBuilder.buildIntArray("1,2,3,4,5"), 1, 3, 3));
+    Printer.printCorrectAnswer(
+        1, new Solution().dietPlanPerformance(DataBuilder.buildIntArray("3,2"), 2, 0, 1));
+    Printer.printCorrectAnswer(
+        0, new Solution().dietPlanPerformance(DataBuilder.buildIntArray("6,5,0,0"), 2, 1, 5));
+    Printer.printCorrectAnswer(
+        3,
+        new Solution()
+            .dietPlanPerformance(DataBuilder.buildIntArray("6,13,8,7,10,1,12,11"), 6, 5, 37));
+    Printer.printCorrectAnswer(
+        6,
+        new Solution()
+            .dietPlanPerformance(
+                DataBuilder.buildIntArray("3,10,17,12,19,6,17,4,15,18"), 5, 34, 53));
   }
 
   static class Solution {
     public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
+      return method1(calories, k, lower, upper);
+    }
 
+    /**
+     * 执行用时： 2416 ms , 在所有 Java 提交中击败了 11.24% 的用户
+     *
+     * <p>内存消耗： 46.8 MB , 在所有 Java 提交中击败了 38.23% 的用户
+     *
+     * @param calories
+     * @param k
+     * @param lower
+     * @param upper
+     * @return
+     */
+    private int method1(int[] calories, int k, int lower, int upper) {
+      int count = 0;
+      for (int i = 0; i < calories.length; i += 1) {
+        int sum = 0;
+        for (int j = i; j < k + i && j < calories.length; j++) {
+          sum += calories[j];
+        }
+        if (sum < lower) count--;
+        else if (sum > upper) count++;
+        if (i + k >= calories.length) break;
+      }
+      return count;
     }
   }
 }
