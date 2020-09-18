@@ -25,6 +25,9 @@ package com.leo.algorithm.easy.string;
 
 import com.leo.algorithm.utils.Printer;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class RobotReturnToOrigin {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(true, new Solution().judgeCircle("UD"));
@@ -34,7 +37,28 @@ public class RobotReturnToOrigin {
 
   static class Solution {
     public boolean judgeCircle(String moves) {
-      return method1(moves);
+      //      return method1(moves);
+      return method2(moves);
+    }
+
+    /**
+     * 执行用时： 18 ms , 在所有 Java 提交中击败了 8.06% 的用户
+     *
+     * <p>内存消耗： 39.5 MB , 在所有 Java 提交中击败了 5.04% 的用户
+     *
+     * @param moves
+     * @return
+     */
+    private boolean method2(String moves) {
+      Map<Character, Integer> map = new HashMap<>();
+      map.put('L', 0);
+      map.put('R', 0);
+      map.put('U', 0);
+      map.put('D', 0);
+      for (char c : moves.toCharArray()) {
+        map.put(c, map.get(c) + 1);
+      }
+      return map.get('L').equals(map.get('R')) && map.get('U').equals(map.get('D'));
     }
 
     /**
@@ -49,17 +73,10 @@ public class RobotReturnToOrigin {
       int l_count = 0, r_count = 0;
       for (char c : moves.toCharArray()) {
         switch (c) {
-          case 'L':
-            l_count++;
-            break;
-          case 'R':
-            l_count--;
-            break;
-          case 'U':
-            r_count++;
-            break;
-          default:
-            r_count--;
+          case 'L': l_count++; break;
+          case 'R': l_count--; break;
+          case 'U': r_count++; break;
+          default: r_count--;
         }
       }
       return l_count == 0 && r_count == 0;
