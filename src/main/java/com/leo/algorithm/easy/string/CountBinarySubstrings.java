@@ -53,7 +53,33 @@ public class CountBinarySubstrings {
   static class Solution {
     public int countBinarySubstrings(String s) {
       //      return method1(s);
-      return method2(s);
+      //      return method2(s);
+      return method3(s);
+    }
+
+    /**
+     * 执行用时： 12 ms , 在所有 Java 提交中击败了 67.68% 的用户
+     *
+     * <p>内存消耗： 39.1 MB , 在所有 Java 提交中击败了 85.52% 的用户
+     *
+     * <p>方法二的基础上，节省一个数组的空间
+     *
+     * @param s
+     * @return
+     */
+    private int method3(String s) {
+      int lastCount = 0, index = 0, len = s.length(), result = 0;
+      while (index < len) {
+        char ch = s.charAt(index);
+        int count = 0;
+        while (index < s.length() && s.charAt(index) == ch) {
+          count++;
+          index++;
+        }
+        result += Math.min(count, lastCount);
+        lastCount = count;
+      }
+      return result;
     }
 
     /**
