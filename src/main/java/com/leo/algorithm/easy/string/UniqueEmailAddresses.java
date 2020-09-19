@@ -58,7 +58,39 @@ public class UniqueEmailAddresses {
 
   static class Solution {
     public int numUniqueEmails(String[] emails) {
-      return method1(emails);
+      //      return method1(emails);
+      return method2(emails);
+    }
+
+    /**
+     * 执行用时： 10 ms , 在所有 Java 提交中击败了 87.04% 的用户
+     *
+     * <p>内存消耗： 38.8 MB , 在所有 Java 提交中击败了 90.08% 的用户
+     *
+     * @param emails
+     * @return
+     */
+    private int method2(String[] emails) {
+      Set<String> set = new HashSet<>();
+      StringBuilder sb = new StringBuilder();
+      for (String email : emails) {
+        boolean flag = false;
+        for (int i = 0; i < email.length(); i++) {
+          char ch = email.charAt(i);
+          if (flag || ch != '+' && ch != '.') {
+            sb.append(ch);
+            if (ch == '@') {
+              flag = true;
+            }
+          } else if (ch == '+') {
+            while (i < email.length() && email.charAt(i) != '@') i++;
+            i--;
+          }
+        }
+        set.add(sb.toString());
+        sb.setLength(0);
+      }
+      return set.size();
     }
 
     /**
