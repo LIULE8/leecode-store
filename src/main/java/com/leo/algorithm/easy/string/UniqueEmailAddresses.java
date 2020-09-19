@@ -38,14 +38,48 @@
 
 package com.leo.algorithm.easy.string;
 
+import com.leo.algorithm.utils.DataBuilder;
+import com.leo.algorithm.utils.Printer;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class UniqueEmailAddresses {
   public static void main(String[] args) {
-    new Solution();
+    Printer.printCorrectAnswer(
+        2,
+        new Solution()
+            .numUniqueEmails(
+                DataBuilder.buildStringArray(
+                    "test.email+alex@leetcode.com",
+                    "test.e.mail+bob.cathy@leetcode.com",
+                    "testemail+david@lee.tcode.com")));
   }
 
   static class Solution {
     public int numUniqueEmails(String[] emails) {
-      return 0;
+      return method1(emails);
+    }
+
+    /**
+     * 执行用时： 42 ms , 在所有 Java 提交中击败了 15.25% 的用户
+     *
+     * <p>内存消耗： 40.4 MB , 在所有 Java 提交中击败了 14.74% 的用户
+     *
+     * @param emails
+     * @return
+     */
+    private int method1(String[] emails) {
+      Set<String> set = new HashSet<>();
+      for (String email : emails) {
+        String[] split = email.split("@");
+        if (split[0].contains("+")) {
+          split[0] = split[0].substring(0, split[0].indexOf("+"));
+        }
+        split[0] = split[0].replaceAll("\\.", "");
+        set.add(split[0] + "@" + split[1]);
+      }
+      return set.size();
     }
   }
 }
