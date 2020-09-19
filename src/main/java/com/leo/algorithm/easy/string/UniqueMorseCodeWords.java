@@ -39,14 +39,44 @@
 
 package com.leo.algorithm.easy.string;
 
+import com.leo.algorithm.utils.DataBuilder;
+import com.leo.algorithm.utils.Printer;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class UniqueMorseCodeWords {
   public static void main(String[] args) {
-    new Solution();
+    Printer.printCorrectAnswer(
+        2,
+        new Solution()
+            .uniqueMorseRepresentations(DataBuilder.buildStringArray("gin", "zen", "gig", "msg")));
   }
 
   static class Solution {
+    /**
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 99.15% 的用户
+     *
+     * <p>内存消耗： 36.6 MB , 在所有 Java 提交中击败了 83.40% 的用户
+     *
+     * @param words
+     * @return
+     */
     public int uniqueMorseRepresentations(String[] words) {
-      return 0;
+      String[] pw = {
+        ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--",
+        "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."
+      };
+      Set<String> set = new HashSet<>();
+      StringBuilder sb = new StringBuilder();
+      for (String word : words) {
+        for (char ch : word.toCharArray()) {
+          sb.append(pw[ch - 'a']);
+        }
+        set.add(sb.toString());
+        sb.setLength(0);
+      }
+      return set.size();
     }
   }
 }
