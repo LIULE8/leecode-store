@@ -31,9 +31,62 @@ public class ImplementStrstr {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(2, new Solution().strStr("hello", "ll"));
     Printer.printCorrectAnswer(-1, new Solution().strStr("aaaaa", "bba"));
+    Printer.printCorrectAnswer(0, new Solution().strStr("", ""));
+    Printer.printCorrectAnswer(0, new Solution().strStr("a", "a"));
   }
 
   static class Solution {
+
+    public int strStr(String haystack, String needle) {
+      //      return method1(haystack, needle);
+      return method2(haystack, needle);
+    }
+
+    /**
+     * KMP算法
+     *
+     * <p>执行用时： 6 ms , 在所有 Java 提交中击败了 18.13% 的用户
+     *
+     * <p>内存消耗： 39.1 MB , 在所有 Java 提交中击败了 11.52% 的用户
+     *
+     * @param haystack
+     * @param needle
+     * @return
+     */
+    private int method2(String haystack, String needle) {
+      if (needle.length() == 0) return 0;
+      int i = 0, j = 0;
+      int[] next = getNext(needle);
+      while (j < needle.length() && i < haystack.length()) {
+        if (j == -1 || haystack.charAt(i) == needle.charAt(j)) {
+          i++;
+          j++;
+        } else {
+          j = next[j];
+        }
+      }
+      if (j == needle.length()) {
+        return i - j;
+      }
+      return -1;
+    }
+
+    private int[] getNext(String needle) {
+      int[] next = new int[needle.length()];
+      next[0] = -1;
+      int i = 0, j = -1;
+      while (i < needle.length() - 1) {
+        if (j == -1 || needle.charAt(i) == needle.charAt(j)) {
+          i++;
+          j++;
+          next[i] = j;
+        } else {
+          j = next[j];
+        }
+      }
+      return next;
+    }
+
     /**
      * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
@@ -43,7 +96,7 @@ public class ImplementStrstr {
      * @param needle
      * @return
      */
-    public int strStr(String haystack, String needle) {
+    private int method1(String haystack, String needle) {
       return haystack.indexOf(needle);
     }
   }
