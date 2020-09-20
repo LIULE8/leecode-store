@@ -33,21 +33,19 @@ public class RansomNote {
 
   static class Solution {
     /**
-     * 执行用时： 17 ms , 在所有 Java 提交中击败了 22.88% 的用户
+     * 执行用时： 14 ms , 在所有 Java 提交中击败了 30.12% 的用户
      *
-     * <p>内存消耗： 39.5 MB , 在所有 Java 提交中击败了 17.27% 的用户
+     * <p>内存消耗： 39.2 MB , 在所有 Java 提交中击败了 54.49% 的用户
      *
      * @param ransomNote
      * @param magazine
      * @return
      */
     public boolean canConstruct(String ransomNote, String magazine) {
-      if (magazine.contains(ransomNote)) return true;
       Map<Character, Integer> ranMap = buildMap(ransomNote);
       Map<Character, Integer> magaMap = buildMap(magazine);
-      if (!magaMap.keySet().containsAll(ranMap.keySet())) return false;
       for (Map.Entry<Character, Integer> entry : ranMap.entrySet()) {
-        if (magaMap.get(entry.getKey()) < entry.getValue()) return false;
+        if (magaMap.getOrDefault(entry.getKey(), 0) < entry.getValue()) return false;
       }
       return true;
     }
