@@ -1,9 +1,12 @@
 package com.leo.algorithm.utils;
 
 import com.leo.algorithm.structure.ListNode;
+import com.leo.algorithm.structure.TreeNode;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class DataBuilder {
 
@@ -119,5 +122,36 @@ public class DataBuilder {
       }
     }
     return results;
+  }
+
+  public static TreeNode buildTreeNode(Integer[] value) {
+    TreeNode headLink = new TreeNode(value[0]);
+    TreeNode header = headLink;
+    Queue<TreeNode> queue = new LinkedList<>();
+    int i = 0;
+    while (headLink != null) {
+      if (2 * i + 1 < value.length && value[2 * i + 1] != null) {
+        headLink.left = new TreeNode(value[2 * i + 1]);
+        queue.add(headLink.left);
+      }
+      if (2 * i + 2 < value.length && value[2 * i + 2] != null) {
+        headLink.right = new TreeNode(value[2 * i + 2]);
+        queue.add(headLink.right);
+      }
+      headLink = queue.poll();
+      i += 1;
+    }
+    return header;
+  }
+
+  public static Integer[] buildIntegerArray(String data) {
+    String[] datas = data.split(",");
+    Integer[] result = new Integer[datas.length];
+    for (int i = 0; i < datas.length; i++) {
+      String num = datas[i].trim();
+      if (num.equals("null")) continue;
+      result[i] = Integer.parseInt(num);
+    }
+    return result;
   }
 }
