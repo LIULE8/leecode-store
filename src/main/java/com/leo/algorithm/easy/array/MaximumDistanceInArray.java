@@ -29,14 +29,14 @@ import java.util.List;
 public class MaximumDistanceInArray {
   public static void main(String[] args) {
     Printer.printCorrectAnswer(
-        4, new Solution().maxDistance(DataBuilder.buildDoubleList("[[1,2,3],[4,5],[1,2,3]]")));
+        4, new Solution().maxDistance(DataBuilder.buildDoubleIntegerList("[[1,2,3],[4,5],[1,2,3]]")));
     Printer.printCorrectAnswer(
-        1, new Solution().maxDistance(DataBuilder.buildDoubleList("[[1],[2]]")));
+        1, new Solution().maxDistance(DataBuilder.buildDoubleIntegerList("[[1],[2]]")));
     Printer.printCorrectAnswer(
         14,
         new Solution()
             .maxDistance(
-                DataBuilder.buildDoubleList(
+                DataBuilder.buildDoubleIntegerList(
                     "[[-8,-7,-7,-5,1,1,3,4],[-2],[-10,-10,-7,0,1,3],[2]]")));
   }
 
