@@ -182,4 +182,8 @@ public class DataBuilder {
     }
     return result;
   }
+
+  public static char[] buildCharArray(String s) {
+    return s.toCharArray();
+  }
 }
