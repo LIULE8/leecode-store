@@ -56,6 +56,14 @@ public class Printer {
     System.out.println(sj.toString());
   }
 
+  public static void printStringArray(String[] a) {
+    StringJoiner sj = new StringJoiner(",");
+    for (String value : a) {
+      sj.add(String.valueOf(value));
+    }
+    System.out.println(sj.toString());
+  }
+
   public static void printIntegerList(List<Integer> list) {
     System.out.println(list.toString());
   }
