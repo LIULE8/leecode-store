@@ -32,7 +32,7 @@
 // Related Topics 排序 哈希表 双指针 二分查找
 // 350. 两个数组的交集 II
 
-package com.leo.algorithm.easy.array;
+package com.leo.algorithm.easy.hashtable;
 
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
