@@ -14,7 +14,7 @@
 // Related Topics 数组 哈希表
 // 1. 两数之和
 
-package com.leo.algorithm.easy.array;
+package com.leo.algorithm.easy.hashtable;
 
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
