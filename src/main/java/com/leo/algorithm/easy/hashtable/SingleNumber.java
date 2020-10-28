@@ -34,7 +34,26 @@ public class SingleNumber {
 
   static class Solution {
     public int singleNumber(int[] nums) {
-      return method1(nums);
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 所有数异或，剩下的那个就是唯一出现的数字
+     *
+     * <p>执行用时： 1 ms , 在所有 Java 提交中击败了 99.82% 的用户
+     *
+     * <p>内存消耗： 38.6 MB , 在所有 Java 提交中击败了 92.29% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      int single = 0;
+      for (int num : nums) {
+        single ^= num;
+      }
+      return single;
     }
 
     /**
