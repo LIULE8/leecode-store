@@ -57,7 +57,28 @@ public class SumOfUniqueElements {
   static class Solution {
     public int sumOfUnique(int[] nums) {
       //      return method1(nums);
-      return method2(nums);
+      //      return method2(nums);
+      return method3(nums);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 36.1 MB , 在所有 Java 提交中击败了 41.88% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method3(int[] nums) {
+      int[] flag = new int[101];
+      for (int num : nums) {
+        flag[num]++;
+      }
+      int sum = 0;
+      for (int i = 0; i < flag.length; i++) {
+        if (flag[i] == 1) sum += i;
+      }
+      return sum;
     }
 
     /**
