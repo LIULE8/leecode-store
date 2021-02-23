@@ -61,7 +61,25 @@ public class FindTheDifference {
   static class Solution {
     public char findTheDifference(String s, String t) {
       //      return method1(s, t);
-      return method2(s, t);
+      //      return method2(s, t);
+      return method3(s, t);
+    }
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 37.2 MB , 在所有 Java 提交中击败了 5.26% 的用户
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    private char method3(String s, String t) {
+      char res = 0;
+      for (char ch : (s + t).toCharArray()) {
+        res ^= ch;
+      }
+      return res;
     }
 
     /**
