@@ -65,22 +65,22 @@ public class FindTheDifference {
     }
 
     /**
-     * 执行用时： 4 ms , 在所有 Java 提交中击败了 21.03% 的用户
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
-     * <p>内存消耗： 37.3 MB , 在所有 Java 提交中击败了 5.04% 的用户
+     * <p>内存消耗： 36.6 MB , 在所有 Java 提交中击败了 93.20% 的用户
      *
      * @param s
      * @param t
      * @return
      */
     private char method2(String s, String t) {
-      int[] re = new int[1002];
-      for (int i = 0; i < s.length(); i++) {
-        re[s.charAt(i)]++;
+      int[] re = new int[26];
+      for (char ch : s.toCharArray()) {
+        re[ch - 'a']++;
       }
-      for (int i = 0; i < t.length(); i++) {
-        if (re[t.charAt(i)] == 0) return t.charAt(i);
-        re[t.charAt(i)]--;
+      for (char ch : t.toCharArray()) {
+        re[ch - 'a']--;
+        if (re[ch - 'a'] < 0) return ch;
       }
       return ' ';
     }
