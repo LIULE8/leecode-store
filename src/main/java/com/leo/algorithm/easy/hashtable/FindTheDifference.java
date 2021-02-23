@@ -64,6 +64,15 @@ public class FindTheDifference {
       return method2(s, t);
     }
 
+    /**
+     * 执行用时： 4 ms , 在所有 Java 提交中击败了 21.03% 的用户
+     *
+     * <p>内存消耗： 37.3 MB , 在所有 Java 提交中击败了 5.04% 的用户
+     *
+     * @param s
+     * @param t
+     * @return
+     */
     private char method2(String s, String t) {
       int[] re = new int[1002];
       for (int i = 0; i < s.length(); i++) {
