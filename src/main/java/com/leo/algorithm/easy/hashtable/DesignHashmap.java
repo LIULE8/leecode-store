@@ -48,16 +48,8 @@ public class DesignHashmap {
    */
   static class MyHashMap {
     static class Entry<K, V> {
-      private final K key;
-      private final V value;
-
-      public K getKey() {
-        return key;
-      }
-
-      public V getValue() {
-        return value;
-      }
+      private K key;
+      private V value;
 
       public Entry(K key, V value) {
         this.key = key;
@@ -74,8 +66,17 @@ public class DesignHashmap {
 
     /** value will always be non-negative. */
     public void put(int key, int value) {
-      remove(key);
-      entries.add(new Entry<>(key, value));
+      boolean flag = false;
+      for (Entry<Integer, Integer> entry : entries) {
+        if (entry.key.equals(key)) {
+          entry.value = value;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) {
+        entries.add(new Entry<>(key, value));
+      }
     }
 
     /**
@@ -84,7 +85,7 @@ public class DesignHashmap {
      */
     public int get(int key) {
       for (Entry<Integer, Integer> entry : entries) {
-        if (entry.getKey() == key) return entry.getValue();
+        if (entry.key == key) return entry.value;
       }
       return -1;
     }
@@ -92,7 +93,7 @@ public class DesignHashmap {
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
     public void remove(int key) {
       for (int i = 0; i < entries.size(); i++) {
-        if (entries.get(i).getKey() == key) {
+        if (entries.get(i).key == key) {
           entries.remove(entries.get(i));
         }
       }
