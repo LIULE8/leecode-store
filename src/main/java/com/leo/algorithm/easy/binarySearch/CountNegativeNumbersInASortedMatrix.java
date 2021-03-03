@@ -73,6 +73,40 @@ public class CountNegativeNumbersInASortedMatrix {
   }
 
   static class Solution {
+
+    public int countNegatives(int[][] grid) {
+      //      return method1(grid);
+      return method2(grid);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 39 MB , 在所有 Java 提交中击败了 29.40% 的用户
+     *
+     * @param grid
+     * @return
+     */
+    private int method2(int[][] grid) {
+      int count = 0;
+      for (int[] ints : grid) {
+        int low = 0, high = ints.length - 1, pos = -1;
+        while (low <= high) {
+          int mid = low + ((high - low) >> 1);
+          if (ints[mid] < 0) {
+            pos = mid;
+            high = mid - 1;
+          } else {
+            low = mid + 1;
+          }
+        }
+        if (pos != -1) {
+          count += (ints.length - pos);
+        }
+      }
+      return count;
+    }
+
     /**
      * 执行用时： 1 ms , 在所有 Java 提交中击败了 39.56% 的用户
      *
@@ -81,7 +115,7 @@ public class CountNegativeNumbersInASortedMatrix {
      * @param grid
      * @return
      */
-    public int countNegatives(int[][] grid) {
+    private int method1(int[][] grid) {
       int count = 0;
       for (int[] ints : grid) {
         int low = 0;
