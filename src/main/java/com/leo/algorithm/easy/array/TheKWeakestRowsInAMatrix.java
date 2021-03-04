@@ -110,14 +110,24 @@ public class TheKWeakestRowsInAMatrix {
       return result;
     }
 
+    /**
+     * 可以使用二分查找优化
+     *
+     * @param nums
+     * @return
+     */
     private int count(int[] nums) {
-      int res = 0;
-      for (int num : nums) {
-        if (num == 1) {
-          res += num;
+      int low = 0;
+      int high = nums.length - 1;
+      while (low <= high) {
+        int mid = low + ((high - low) >> 1);
+        if (nums[mid] == 0) {
+          high = mid - 1;
+        } else {
+          low = mid + 1;
         }
       }
-      return res;
+      return low;
     }
 
     /**
