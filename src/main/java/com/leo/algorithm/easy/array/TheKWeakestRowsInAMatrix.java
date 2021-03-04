@@ -82,6 +82,44 @@ public class TheKWeakestRowsInAMatrix {
   }
 
   static class Solution {
+
+    public int[] kWeakestRows(int[][] mat, int k) {
+      //      return method1(mat, k);
+      return method2(mat, k);
+    }
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 39.5 MB , 在所有 Java 提交中击败了 52.01% 的用户
+     *
+     * @param mat
+     * @param k
+     * @return
+     */
+    private int[] method2(int[][] mat, int k) {
+      int[] list = new int[mat.length];
+      int[] result = new int[k];
+      for (int i = 0; i < mat.length; i++) {
+        list[i] = count(mat[i]) * 1000 + i;
+      }
+      Arrays.sort(list);
+      for (int i = 0; i < result.length; i++) {
+        result[i] = list[i] % 1000;
+      }
+      return result;
+    }
+
+    private int count(int[] nums) {
+      int res = 0;
+      for (int num : nums) {
+        if (num == 1) {
+          res += num;
+        }
+      }
+      return res;
+    }
+
     /**
      * 执行用时： 3 ms , 在所有 Java 提交中击败了 42.10% 的用户
      *
@@ -91,7 +129,7 @@ public class TheKWeakestRowsInAMatrix {
      * @param k
      * @return
      */
-    public int[] kWeakestRows(int[][] mat, int k) {
+    private int[] method1(int[][] mat, int k) {
       Map<Integer, List<Integer>> map = new HashMap<>();
       for (int i = 0; i < mat.length; i++) {
         int sum = 0;
