@@ -79,29 +79,34 @@ public class IntersectionOfTwoArraysIi {
     }
 
     /**
-     * 执行用时： 3 ms , 在所有 Java 提交中击败了 96.31% 的用户
+     * 执行用时： 2 ms , 在所有 Java 提交中击败了 86.43% 的用户
      *
-     * <p>内存消耗： 38.6 MB , 在所有 Java 提交中击败了 89.53% 的用户
+     * <p>内存消耗： 38.5 MB , 在所有 Java 提交中击败了 80.68% 的用户
      *
      * @param nums1
      * @param nums2
      * @return
      */
     private int[] method3(int[] nums1, int[] nums2) {
-      Set<Integer> set1 = new HashSet<>();
-      for (int i : nums1) {
-        set1.add(i);
-      }
-      Set<Integer> list = new HashSet<>();
-      for (int i : nums2) {
-        if (set1.contains(i)) {
-          list.add(i);
+      Arrays.sort(nums1);
+      Arrays.sort(nums2);
+      int i = 0, j = 0;
+      List<Integer> list = new LinkedList<>();
+      while (i < nums1.length && j < nums2.length) {
+        if (nums1[i] < nums2[j]) {
+          i++;
+        } else if (nums1[i] > nums2[j]) {
+          j++;
+        } else {
+          list.add(nums1[i]);
+          i++;
+          j++;
         }
       }
-      int[] res = new int[list.size()];
       int k = 0;
-      for (Integer i : list) {
-        res[k++] = i;
+      int[] res = new int[list.size()];
+      for (Integer num : list) {
+        res[k++] = num;
       }
       return res;
     }
