@@ -48,6 +48,29 @@ public class QueShiDeShuZiLcof {
      * @return
      */
     public int missingNumber(int[] nums) {
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 39.1 MB , 在所有 Java 提交中击败了 12.55% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int method2(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l <= r) {
+        int mid = l + ((r - l) >> 1);
+        if (nums[mid] <= mid) l = mid + 1;
+        else r = mid - 1;
+      }
+      return l;
+    }
+
+    private int method1(int[] nums) {
       for (int i = 0; i < nums.length; i++) {
         if (nums[i] != i) return i;
       }
