@@ -42,7 +42,35 @@ public class ZaiPaiXuShuZuZhongChaZhaoShuZiLcof {
     public int search(int[] nums, int target) {
       //      return method1(nums, target);
       //      return method2(nums, target);
-      return method3(nums, target);
+      //      return method3(nums, target);
+      return method4(nums, target);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 41.3 MB , 在所有 Java 提交中击败了 71.22% 的用户 相比较方法三，可读性更高
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    private int method4(int[] nums, int target) {
+      int l = 0, mid = 0, r = nums.length - 1;
+      while (l <= r) {
+        mid = l + ((r - l) >> 1);
+        if (nums[mid] > target) {
+          r = mid - 1;
+        } else if (nums[mid] < target) {
+          l = mid + 1;
+        } else {
+          if ((mid == 0) || nums[mid - 1] != nums[mid]) break;
+          else r = mid - 1;
+        }
+      }
+      int count = 0;
+      while (mid < nums.length && nums[mid++] == target) count++;
+      return count;
     }
 
     /**
