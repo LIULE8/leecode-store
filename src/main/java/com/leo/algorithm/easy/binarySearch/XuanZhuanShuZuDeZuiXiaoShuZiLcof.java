@@ -25,10 +25,10 @@ import com.leo.algorithm.utils.Printer;
 
 public class XuanZhuanShuZuDeZuiXiaoShuZiLcof {
   public static void main(String[] args) {
-    //    Printer.printCorrectAnswer(1, new
-    // Solution().minArray(DataBuilder.buildIntArray("3,4,5,1,2")));
-    //    Printer.printCorrectAnswer(0, new
-    // Solution().minArray(DataBuilder.buildIntArray("2,2,2,0,1")));
+    Printer.printCorrectAnswer(1, new Solution().minArray(DataBuilder.buildIntArray("3,1,1")));
+    Printer.printCorrectAnswer(1, new Solution().minArray(DataBuilder.buildIntArray("1,3,3")));
+    Printer.printCorrectAnswer(1, new Solution().minArray(DataBuilder.buildIntArray("3,4,5,1,2")));
+    Printer.printCorrectAnswer(0, new Solution().minArray(DataBuilder.buildIntArray("2,2,2,0,1")));
     Printer.printCorrectAnswer(
         1,
         new Solution()
@@ -39,14 +39,39 @@ public class XuanZhuanShuZuDeZuiXiaoShuZiLcof {
 
   static class Solution {
     public int minArray(int[] numbers) {
-      return method1(numbers);
+      //      return method1(numbers);
+      return method2(numbers);
     }
 
     /**
+     * 二分查找
      *
+     * <p>执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 38.3 MB , 在所有 Java 提交中击败了 42.52% 的用户
+     *
+     * @param numbers
+     * @return
+     */
+    private int method2(int[] numbers) {
+      int l = 0, r = numbers.length - 1;
+      while (l <= r) {
+        int mid = l + ((r - l) >> 1);
+        if (numbers[mid] > numbers[r]) {
+          l = mid + 1;
+        } else if (numbers[mid] < numbers[r]) {
+          r = mid;
+        } else {
+          r = r - 1;
+        }
+      }
+      return numbers[l];
+    }
+
+    /**
      * 分而治之
      *
-     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     * <p>执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
      * <p>内存消耗： 38.3 MB , 在所有 Java 提交中击败了 41.81% 的用户
      *
