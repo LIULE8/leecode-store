@@ -130,5 +130,24 @@ public class BinarySearch {
       }
       return -1;
     }
+
+    /**
+     * 查找最后一个大于等于给定值的元素
+     *
+     * @param nums [3,4,6,7,10]
+     * @param target 5
+     * @return 8
+     */
+    public int findLastLargeOrEqualsTargetValue(int[] nums, int target) {
+      int l = 0, r = nums.length - 1;
+      while (l <= r) {
+        int mid = l + ((r - l) >> 1);
+        if (nums[mid] <= target) {
+          if (mid == nums.length - 1 || nums[mid + 1] > target) return nums[mid];
+          else l = mid + 1;
+        } else r = mid - 1;
+      }
+      return -1;
+    }
   }
 }
