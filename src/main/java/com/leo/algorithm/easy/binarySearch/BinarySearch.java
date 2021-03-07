@@ -88,5 +88,28 @@ public class BinarySearch {
       }
       return -1;
     }
+
+    /**
+     * 查找最后一个值等于给定值的元素
+     *
+     * @param nums [1,3,4,5,6,8,8,8,11,18]
+     * @param target 8
+     * @return 7
+     */
+    public int findLastEqualsTargetValue(int[] nums, int target) {
+      int l = 0, r = nums.length - 1;
+      while (l <= r) {
+        int mid = l + ((r - l) >> 1);
+        if (nums[mid] > target) {
+          r = mid - 1;
+        } else if (nums[mid] < target) {
+          l = mid + 1;
+        } else {
+          if (mid == 0 || nums[mid + 1] != target) return mid;
+          else l = mid + 1;
+        }
+      }
+      return -1;
+    }
   }
 }
