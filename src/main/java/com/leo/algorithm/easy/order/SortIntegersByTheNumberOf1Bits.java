@@ -73,7 +73,37 @@ public class SortIntegersByTheNumberOf1Bits {
 
   static class Solution {
     public int[] sortByBits(int[] arr) {
-      return method1(arr);
+      //      return method1(arr);
+      return method2(arr);
+    }
+
+    /**
+     * 执行用时： 10 ms , 在所有 Java 提交中击败了 50.65% 的用户
+     *
+     * <p>内存消耗： 39 MB , 在所有 Java 提交中击败了 43.41% 的用户
+     *
+     * @param arr
+     * @return
+     */
+    private int[] method2(int[] arr) {
+      List<Integer> list = new ArrayList<>(arr.length);
+      int[] bit = new int[10001];
+      for (int num : arr) {
+        list.add(num);
+        bit[num] = Integer.bitCount(num);
+      }
+      list.sort(
+          (o1, o2) -> {
+            if (bit[o1] != bit[o2]) {
+              return bit[o1] - bit[o2];
+            }
+            return o1 - o2;
+          });
+      int[] res = new int[arr.length];
+      for (int i = 0; i < list.size(); i++) {
+        res[i] = list.get(i);
+      }
+      return res;
     }
 
     /**
