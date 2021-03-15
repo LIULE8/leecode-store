@@ -65,13 +65,13 @@ public class GoalParserInterpretation {
      */
     private String method2(String command) {
       StringBuilder sb = new StringBuilder();
-      StringBuilder s = new StringBuilder();
+      int count =0;
       for (char ch : command.toCharArray()) {
         if (ch == 'G') sb.append(ch);
-        else if (ch == '(' || ch == 'a' || ch == 'l') s.append(ch);
+        else if (ch == '(' || ch == 'a' || ch == 'l') count++;
         else if (ch == ')') {
-          sb.append(s.length() == 1 ? "o" : "al");
-          s.setLength(0);
+          sb.append(count == 1 ? "o" : "al");
+          count=0;
         }
       }
       return sb.toString();
