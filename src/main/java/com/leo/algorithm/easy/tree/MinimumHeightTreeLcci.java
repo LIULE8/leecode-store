@@ -45,7 +45,7 @@ public class MinimumHeightTreeLcci {
       }
       int mid = left + ((right - left) >> 1);
       TreeNode treeNode = new TreeNode(nums[mid]);
-      treeNode.left = sortedArrayToBST(nums, left, mid);
+      treeNode.left = sortedArrayToBST(nums, left, mid - 1);
       treeNode.right = sortedArrayToBST(nums, mid + 1, right);
       return treeNode;
     }

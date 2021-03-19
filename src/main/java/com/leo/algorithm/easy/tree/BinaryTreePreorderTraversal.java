@@ -16,7 +16,7 @@
 // Related Topics 栈 树
 // 144. 二叉树的前序遍历
 
-package com.leo.algorithm.easy;
+package com.leo.algorithm.easy.tree;
 
 import com.leo.algorithm.structure.TreeNode;
 import com.leo.algorithm.utils.DataBuilder;
