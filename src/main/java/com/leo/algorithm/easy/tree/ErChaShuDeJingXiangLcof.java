@@ -37,6 +37,8 @@ package com.leo.algorithm.easy.tree;
 
 import com.leo.algorithm.structure.TreeNode;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.Stack;
 
 public class ErChaShuDeJingXiangLcof {
@@ -47,7 +49,31 @@ public class ErChaShuDeJingXiangLcof {
   static class Solution {
     public TreeNode mirrorTree(TreeNode root) {
       //      return method1(root);
-      return method2(root);
+      //      return method2(root);
+      return method3(root);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 35.8 MB , 在所有 Java 提交中击败了 50.86% 的用户
+     *
+     * @param root
+     * @return
+     */
+    private TreeNode method3(TreeNode root) {
+      if (root == null) return null;
+      Queue<TreeNode> queue = new ArrayDeque<>();
+      queue.add(root);
+      while (!queue.isEmpty()) {
+        TreeNode poll = queue.poll();
+        TreeNode tmp = poll.left;
+        poll.left = poll.right;
+        poll.right = tmp;
+        if (poll.left != null) queue.add(poll.left);
+        if (poll.right != null) queue.add(poll.right);
+      }
+      return root;
     }
 
     /**
@@ -61,11 +87,11 @@ public class ErChaShuDeJingXiangLcof {
      * @return
      */
     private TreeNode method2(TreeNode root) {
+      if (root == null) return null;
       Stack<TreeNode> stack = new Stack<>();
       stack.add(root);
       while (!stack.isEmpty()) {
         TreeNode pop = stack.pop();
-        if (pop == null) continue;
         TreeNode tmp = pop.left;
         pop.left = pop.right;
         pop.right = tmp;
