@@ -37,6 +37,8 @@ package com.leo.algorithm.easy.tree;
 
 import com.leo.algorithm.structure.TreeNode;
 
+import java.util.Stack;
+
 public class ErChaShuDeJingXiangLcof {
   public static void main(String[] args) {
     Solution solution = new Solution();
@@ -44,7 +46,33 @@ public class ErChaShuDeJingXiangLcof {
 
   static class Solution {
     public TreeNode mirrorTree(TreeNode root) {
-      return method1(root);
+      //      return method1(root);
+      return method2(root);
+    }
+
+    /**
+     * 栈
+     *
+     * <p>执行用时： 1 ms , 在所有 Java 提交中击败了 8.36% 的用户
+     *
+     * <p>内存消耗： 35.9 MB , 在所有 Java 提交中击败了 35.50% 的用户
+     *
+     * @param root
+     * @return
+     */
+    private TreeNode method2(TreeNode root) {
+      Stack<TreeNode> stack = new Stack<>();
+      stack.add(root);
+      while (!stack.isEmpty()) {
+        TreeNode pop = stack.pop();
+        if (pop == null) continue;
+        TreeNode tmp = pop.left;
+        pop.left = pop.right;
+        pop.right = tmp;
+        if (pop.left != null) stack.add(pop.left);
+        if (pop.right != null) stack.add(pop.right);
+      }
+      return root;
     }
 
     /**
