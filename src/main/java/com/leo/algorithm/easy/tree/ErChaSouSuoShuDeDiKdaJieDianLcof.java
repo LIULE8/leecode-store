@@ -51,13 +51,37 @@ public class ErChaSouSuoShuDeDiKdaJieDianLcof {
   }
 
   static class Solution {
+    private int result = 0, count = 0;
+
     public int kthLargest(TreeNode root, int k) {
       //      return method1(root, k);
       return method2(root, k);
     }
 
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 38.2 MB , 在所有 Java 提交中击败了 74.87% 的用户
+     *
+     * @param root
+     * @param k
+     * @return
+     */
     private int method2(TreeNode root, int k) {
-      return 0;
+      count = k;
+      if (root != null) {
+        dfs(root);
+      }
+      return result;
+    }
+
+    private void dfs(TreeNode root) {
+      if (root.right != null && count > 0) dfs(root.right);
+      if (--count == 0) {
+        result = root.val;
+        return;
+      }
+      if (root.left != null && count > 0) dfs(root.left);
     }
 
     /**
