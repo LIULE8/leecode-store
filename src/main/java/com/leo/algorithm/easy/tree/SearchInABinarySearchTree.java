@@ -41,6 +41,15 @@ public class SearchInABinarySearchTree {
       return method2(root, val);
     }
 
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 39.4 MB , 在所有 Java 提交中击败了 32.08% 的用户
+     *
+     * @param root
+     * @param val
+     * @return
+     */
     private TreeNode method2(TreeNode root, int val) {
       if (root == null || root.val == val) return root;
       return val > root.val ? searchBST(root.right, val) : searchBST(root.left, val);
