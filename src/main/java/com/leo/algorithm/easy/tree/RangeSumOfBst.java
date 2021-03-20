@@ -39,6 +39,11 @@ public class RangeSumOfBst {
   }
 
   static class Solution {
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
+      return method1(root, low, high);
+    }
+
     /**
      * 执行用时： 1 ms , 在所有 Java 提交中击败了 50.95% 的用户
      *
@@ -49,7 +54,7 @@ public class RangeSumOfBst {
      * @param high
      * @return
      */
-    public int rangeSumBST(TreeNode root, int low, int high) {
+    private int method1(TreeNode root, int low, int high) {
       int count = 0;
       if (root == null) return count;
       if (root.val >= low && root.val <= high) {
