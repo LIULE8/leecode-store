@@ -59,7 +59,22 @@ public class IncreasingOrderSearchTree {
 
   static class Solution {
     public TreeNode increasingBST(TreeNode root) {
-      return method1(root);
+      //      return method1(root);
+      return method2(root);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 36 MB , 在所有 Java 提交中击败了 42.83% 的用户
+     */
+    TreeNode cur;
+
+    private TreeNode method2(TreeNode root) {
+      TreeNode newRoot = new TreeNode(0);
+      cur = newRoot;
+      searchBST(root);
+      return newRoot.right;
     }
 
     /**
@@ -86,6 +101,15 @@ public class IncreasingOrderSearchTree {
       searchBST(root.left, list);
       list.add(root.val);
       searchBST(root.right, list);
+    }
+
+    private void searchBST(TreeNode root) {
+      if (root == null) return;
+      searchBST(root.left);
+      root.left = null;
+      cur.right = root;
+      cur = cur.right;
+      searchBST(root.right);
     }
   }
 }
