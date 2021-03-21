@@ -61,10 +61,13 @@ public class ErChaShuDeZuiJinGongGongZuXianLcof {
       if (root == null || root == p || root == q) return root;
       TreeNode left = lowestCommonAncestor(root.left, p, q);
       TreeNode right = lowestCommonAncestor(root.right, p, q);
+      // p q 都在左子树
       if (left != null) {
+        // p q 一个在左，一个在右
         if (right != null) return root;
         return left;
       }
+      // p q 都在右子树
       return right;
     }
   }
