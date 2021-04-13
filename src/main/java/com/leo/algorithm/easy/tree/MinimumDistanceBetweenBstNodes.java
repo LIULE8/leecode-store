@@ -46,10 +46,6 @@ public class MinimumDistanceBetweenBstNodes {
   }
 
   static class Solution {
-    public int minDiffInBST(TreeNode root) {
-      return method1(root);
-    }
-
     /**
      * 执行用时： 2 ms , 在所有 Java 提交中击败了 5.57% 的用户
      *
@@ -58,7 +54,7 @@ public class MinimumDistanceBetweenBstNodes {
      * @param root
      * @return
      */
-    private int method1(TreeNode root) {
+    public int minDiffInBST(TreeNode root) {
       List<Integer> list = new ArrayList<>();
       minDiffInBST(root, list);
       list.sort(Comparator.naturalOrder());
