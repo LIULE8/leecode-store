@@ -25,6 +25,7 @@ public class FactorialTrailingZeroes {
     Printer.printCorrectAnswer(0, new Solution().trailingZeroes(3));
     Printer.printCorrectAnswer(1, new Solution().trailingZeroes(5));
     Printer.printCorrectAnswer(6, new Solution().trailingZeroes(25));
+    Printer.printCorrectAnswer(452137076, new Solution().trailingZeroes(1808548329));
   }
 
   static class Solution {
@@ -33,8 +34,8 @@ public class FactorialTrailingZeroes {
      *
      * <p>内存消耗： 35.2 MB , 在所有 Java 提交中击败了 86.20% 的用户
      *
-     * @param n
-     * @return
+     * @param n 452137076
+     * @return 有 bug，参考 FactorialZerosLcci
      */
     public int trailingZeroes(int n) {
       int res = 0;
