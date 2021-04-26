@@ -58,7 +58,28 @@ public class PerfectNumber {
     }
 
     public boolean checkPerfectNumber(int num) {
-      return method1(num);
+      //      return method1(num);
+      return method2(num);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 35.1 MB , 在所有 Java 提交中击败了 75.44% 的用户
+     *
+     * @param num
+     * @return
+     */
+    private boolean method2(int num) {
+      switch (num) {
+        case 6:
+        case 28:
+        case 496:
+        case 8128:
+        case 33550336:
+          return true;
+      }
+      return false;
     }
 
     /**
