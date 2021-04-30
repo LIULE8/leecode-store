@@ -49,8 +49,6 @@
 
 package com.leo.algorithm.easy.math;
 
-import java.util.Arrays;
-
 public class SignOfTheProductOfAnArray {
   public static void main(String[] args) {
     Solution solution = new Solution();
@@ -58,20 +56,18 @@ public class SignOfTheProductOfAnArray {
 
   static class Solution {
     /**
-     * 执行用时： 2 ms , 在所有 Java 提交中击败了 33.81% 的用户
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
-     * <p>内存消耗： 38.1 MB , 在所有 Java 提交中击败了 56.72% 的用户
+     * <p>内存消耗： 38.4 MB , 在所有 Java 提交中击败了 9.23% 的用户
      *
      * @param nums
      * @return
      */
     public int arraySign(int[] nums) {
-      Arrays.sort(nums);
       int count = 0;
       for (int num : nums) {
         if (num < 0) count++;
         else if (num == 0) return 0;
-        else break;
       }
       return count % 2 == 0 ? 1 : -1;
     }
