@@ -28,7 +28,7 @@
 // Related Topics 数组 二分查找
 // 35. 搜索插入位置
 
-package com.leo.algorithm.easy.array;
+package com.leo.algorithm.plan.introduction.t01;
 
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
@@ -43,26 +43,19 @@ public class SearchInsertPosition {
   }
 
   static class Solution {
-    /**
-     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
-     *
-     * <p>内存消耗： 38.2 MB , 在所有 Java 提交中击败了 23.66% 的用户
-     *
-     * @param nums
-     * @param target
-     * @return
-     */
+
     public int searchInsert(int[] nums, int target) {
       if (nums == null || nums.length == 0) return -1;
-      int start = 0;
-      int end = nums.length - 1;
-      while (start <= end) {
-        int mid = (start + end) >> 1;
-        if (nums[mid] == target) return mid;
-        else if (nums[mid] < target) start = mid + 1;
-        else end = mid - 1;
+      int l = 0;
+      int r = nums.length - 1;
+      while (l <= r) {
+        int mid = l + ((r - l) >> 1);
+        if (target <= nums[mid]) {
+          if (mid == 0 || target > nums[mid - 1]) return mid;
+          else r = mid - 1;
+        } else l = mid + 1;
       }
-      return start;
+      return l;
     }
   }
 }
