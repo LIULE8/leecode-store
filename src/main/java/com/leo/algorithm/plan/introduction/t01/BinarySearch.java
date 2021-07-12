@@ -28,7 +28,7 @@
 // Related Topics 二分查找
 // 704. 二分查找
 
-package com.leo.algorithm.easy.binarySearch;
+package com.leo.algorithm.plan.introduction.t01;
 
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
