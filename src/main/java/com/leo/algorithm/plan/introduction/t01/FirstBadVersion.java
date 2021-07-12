@@ -6,38 +6,44 @@
 // 你可以通过调用 bool isBadVersion(version) 接口来判断版本号 version 是否在单元测试中出错。实现一个函数来查找第一个错误
 // 的版本。你应该尽量减少对调用 API 的次数。
 //
-// 示例:
 //
-// 给定 n = 5，并且 version = 4 是第一个错误的版本。
+// 示例 1：
 //
+//
+// 输入：n = 5, bad = 4
+// 输出：4
+// 解释：
 // 调用 isBadVersion(3) -> false
-// 调用 isBadVersion(5) -> true
-// 调用 isBadVersion(4) -> true
-//
+// 调用 isBadVersion(5) -> true
+// 调用 isBadVersion(4) -> true
 // 所以，4 是第一个错误的版本。
-// Related Topics 二分查找
+//
+//
+// 示例 2：
+//
+//
+// 输入：n = 1, bad = 1
+// 输出：1
+//
+//
+//
+//
+// 提示：
+//
+//
+// 1 <= bad <= n <= 231 - 1
+//
+// Related Topics 二分查找 交互
 // 278. 第一个错误的版本
 
-package com.leo.algorithm.easy.binarySearch;
+package com.leo.algorithm.plan.introduction.t01;
 
 public class FirstBadVersion {
   public static void main(String[] args) {
     Solution solution = new Solution();
   }
 
-  /* The isBadVersion API is defined in the parent class VersionControl.
-  boolean isBadVersion(int version); */
-
   static class Solution {
-
-    /**
-     * 执行用时： 15 ms , 在所有 Java 提交中击败了 93.13% 的用户
-     *
-     * <p>内存消耗： 35.2 MB , 在所有 Java 提交中击败了 27.67% 的用户
-     *
-     * @param n
-     * @return
-     */
     public int firstBadVersion(int n) {
       int l = 0;
       int r = n;
@@ -51,7 +57,7 @@ public class FirstBadVersion {
       return -1;
     }
 
-    boolean isBadVersion(int version) {
+    public Boolean isBadVersion(int n) {
       return false;
     }
   }
