@@ -51,7 +51,37 @@ public class SquaresOfASortedArray {
 
   static class Solution {
     public int[] sortedSquares(int[] nums) {
-      return method1(nums);
+      //      return method1(nums);
+      return method2(nums);
+    }
+
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 40.3 MB , 在所有 Java 提交中击败了 27.56% 的用户
+     *
+     * @param nums
+     * @return
+     */
+    private int[] method2(int[] nums) {
+      if (nums == null || nums.length == 0) return nums;
+      // 定义nums数组前后双指针
+      int l = 0;
+      int r = nums.length - 1;
+      // 定义新数组接收结果，i为下标
+      int[] result = new int[nums.length];
+      int i = nums.length - 1;
+      while (l <= r) {
+        if (Math.abs(nums[l]) < Math.abs(nums[r])) {
+          result[i] = nums[r] * nums[r];
+          r--;
+        } else {
+          result[i] = nums[l] * nums[l];
+          l++;
+        }
+        i--;
+      }
+      return result;
     }
 
     /**
