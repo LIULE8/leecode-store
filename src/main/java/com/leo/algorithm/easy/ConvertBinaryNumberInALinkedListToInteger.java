@@ -25,13 +25,13 @@ import com.leo.algorithm.utils.DataBuilder;
  * <p>
  * 输入：head = [0,0]
  * 输出：0
- *  
+ *  
  * <p>
  * 提示：
  * <p>
  * 链表不为空。
- * 链表的结点总数不超过 30。
- * 每个结点的值不是 0 就是 1。
+ * 链表的结点总数不超过 30。
+ * 每个结点的值不是 0 就是 1。
  * <p>
  * 来源：力扣（LeetCode）
  * 链接：https://leetcode-cn.com/problems/convert-binary-number-in-a-linked-list-to-integer

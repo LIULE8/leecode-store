@@ -8,13 +8,13 @@ import com.leo.algorithm.utils.DataBuilder;
  * <p>
  * 输入的guess数组为 小A 每次的猜测，answer数组为 小B 每次的选择。guess和answer的长度都等于3。
  * <p>
- *  
+ *  
  * 示例 1：
  * <p>
  * 输入：guess = [1,2,3], answer = [1,2,3]
  * 输出：3
  * 解释：小A 每次都猜对了。
- *  
+ *  
  * <p>
  * 示例 2：
  * <p>

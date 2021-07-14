@@ -11,13 +11,13 @@ import com.leo.algorithm.utils.Printer;
  *
  * <p>字符串的一个子序列是原始字符串删除一些（也可以不删除）字符而不改变剩余字符相对位置形成的新字符串。（例如，"ace"是"abcde"的一个子序列，而"aec"不是）。
  *
- * <p>示例 1: s = "abc", t = "ahbgdc"
+ * <p>示例 1: s = "abc", t = "ahbgdc"
  *
- * <p>返回 true.
+ * <p>返回 true.
  *
- * <p>示例 2: s = "axc", t = "ahbgdc"
+ * <p>示例 2: s = "axc", t = "ahbgdc"
  *
- * <p>返回 false.
+ * <p>返回 false.
  *
  * <p>后续挑战 :
  *

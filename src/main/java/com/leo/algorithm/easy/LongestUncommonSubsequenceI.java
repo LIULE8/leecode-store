@@ -13,7 +13,7 @@ package com.leo.algorithm.easy;
  *
  * <p>输入: "aba", "cdc" 输出: 3 解析: 最长特殊序列可为 "aba" (或 "cdc") 说明:
  *
- * <p>两个字符串长度均小于100。 字符串中的字符仅含有 'a'~'z'。
+ * <p>两个字符串长度均小于100。 字符串中的字符仅含有 'a'~'z'。
  *
  * <p>来源：力扣（LeetCode） 链接：https://leetcode-cn.com/problems/longest-uncommon-subsequence-i
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。

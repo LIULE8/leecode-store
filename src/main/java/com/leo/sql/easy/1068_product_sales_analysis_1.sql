@@ -1,6 +1,6 @@
 # 1068. 产品销售分析 I
 #
-# 销售表 Sales：
+# 销售表 Sales：
 #
 # +-------------+-------+
 # | Column Name | Type  |
@@ -14,7 +14,7 @@
 # (sale_id, year) 是销售表 Sales 的主键.
 # product_id 是产品表 Product 的外键.
 # 注意: price 表示每单位价格
-# 产品表 Product：
+# 产品表 Product：
 #
 # +--------------+---------+
 # | Column Name  | Type    |
@@ -22,8 +22,8 @@
 # | product_id   | int     |
 # | product_name | varchar |
 # +--------------+---------+
-# product_id 是表的主键.
-# 写一条SQL 查询语句获取产品表 Product 中所有的 产品名称 product name 以及 该产品在 Sales 表中相对应的 上市年份 year 和 价格 price。
+# product_id 是表的主键.
+# 写一条SQL 查询语句获取产品表 Product 中所有的 产品名称 product name 以及 该产品在 Sales 表中相对应的 上市年份 year 和 价格 price。
 #
 # 示例：
 #

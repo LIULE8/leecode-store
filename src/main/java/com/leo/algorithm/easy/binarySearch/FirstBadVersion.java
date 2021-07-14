@@ -11,8 +11,8 @@
 // 给定 n = 5，并且 version = 4 是第一个错误的版本。
 //
 // 调用 isBadVersion(3) -> false
-// 调用 isBadVersion(5) -> true
-// 调用 isBadVersion(4) -> true
+// 调用 isBadVersion(5) -> true
+// 调用 isBadVersion(4) -> true
 //
 // 所以，4 是第一个错误的版本。
 // Related Topics 二分查找
