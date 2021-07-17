@@ -27,9 +27,8 @@
 // text 由一些用空格分隔的单词组成，每个单词都由小写英文字母组成
 // 1 <= first.length, second.length <= 10
 // first 和 second 由小写英文字母组成
-// 1078. Bigram 分词
 // Related Topics 哈希表
-// 👍 19 👎 0
+// 1078. Bigram 分词
 
 package com.leo.algorithm.easy.hashtable;
 
