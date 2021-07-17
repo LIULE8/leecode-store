@@ -52,6 +52,7 @@ public class RemoveNthNodeFromEndOfList {
   }
 
   static class Solution {
+
     /**
      * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
