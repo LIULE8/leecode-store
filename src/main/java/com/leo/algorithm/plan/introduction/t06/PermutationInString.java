@@ -69,18 +69,18 @@ public class PermutationInString {
       int left = 0;
       int right = 0;
       while (right < tLen) {
-        char rch = text[right];
-        if (pFran[rch - 'a'] > 0) {
-          winFran[rch - 'a']++;
-          if (winFran[rch - 'a'] == pFran[rch - 'a']) winCount++;
+        int rIndex = text[right] - 'a';
+        if (pFran[rIndex] > 0) {
+          winFran[rIndex]++;
+          if (winFran[rIndex] == pFran[rIndex]) winCount++;
         }
         right++;
         while (winCount == pCount) {
           if (right - left == pLen) return true;
-          char lch = text[left];
-          if (pFran[lch - 'a'] > 0) {
-            winFran[lch - 'a']--;
-            if (winFran[lch - 'a'] < pFran[lch - 'a']) winCount--;
+          int lIndex = text[left] - 'a';
+          if (pFran[lIndex] > 0) {
+            winFran[lIndex]--;
+            if (winFran[lIndex] < pFran[lIndex]) winCount--;
           }
           left++;
         }
