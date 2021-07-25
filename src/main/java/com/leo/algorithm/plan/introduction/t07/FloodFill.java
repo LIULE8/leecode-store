@@ -60,11 +60,11 @@ public class FloodFill {
       if (sr >= 0 && sr < image.length && sc >= 0 && sc < image[sr].length) {
         if (image[sr][sc] == target) {
           image[sr][sc] = newColor;
+          floodFill(image, sr - 1, sc, newColor, target);
+          floodFill(image, sr, sc - 1, newColor, target);
+          floodFill(image, sr + 1, sc, newColor, target);
+          floodFill(image, sr, sc + 1, newColor, target);
         }
-        floodFill(image, sr - 1, sc, newColor, target);
-        floodFill(image, sr, sc - 1, newColor, target);
-        floodFill(image, sr + 1, sc, newColor, target);
-        floodFill(image, sr, sc + 1, newColor, target);
       }
     }
   }
