@@ -1,25 +1,55 @@
+// 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+//
+//
+//
+//
+// 示例 1：
+//
+//
+// 输入：head = [1,2,3,4,5]
+// 输出：[5,4,3,2,1]
+//
+//
+// 示例 2：
+//
+//
+// 输入：head = [1,2]
+// 输出：[2,1]
+//
+//
+// 示例 3：
+//
+//
+// 输入：head = []
+// 输出：[]
+//
+//
+//
+//
+// 提示：
+//
+//
+// 链表中节点的数目范围是 [0, 5000]
+// -5000 <= Node.val <= 5000
+//
+//
+//
+//
+// 进阶：链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？
+//
+//
+// Related Topics 递归 链表
+// 206. 反转链表 / 剑指 Offer 24. 反转链表
+
 package com.leo.algorithm.easy.linklist;
 
 import com.leo.algorithm.structure.ListNode;
 import com.leo.algorithm.utils.DataBuilder;
 import com.leo.algorithm.utils.Printer;
 
-/**
- * 206. 反转链表
- *
- * <p>反转一个单链表。
- *
- * <p>示例:
- *
- * <p>输入: 1->2->3->4->5->NULL
- *
- * <p>输出: 5->4->3->2->1->NULL
- */
 public class ReverseLinkedList {
   public static void main(String[] args) {
-    ListNode listNode = DataBuilder.buildListNode("1,2,3,4,5");
-    ListNode listNode1 = new Solution().reverseList(listNode);
-    Printer.printListNode(listNode1);
+    Printer.printListNode(new Solution().reverseList(DataBuilder.buildListNode("1,2,3,4,5")));
   }
 
   static class Solution {
