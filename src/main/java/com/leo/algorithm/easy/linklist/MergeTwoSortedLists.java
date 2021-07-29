@@ -50,6 +50,15 @@ public class MergeTwoSortedLists {
   }
 
   static class Solution {
+    /**
+     * 执行用时： 1 ms , 在所有 Java 提交中击败了 84.93% 的用户
+     *
+     * <p>内存消耗： 38.6 MB , 在所有 Java 提交中击败了 28.83% 的用户
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
       ListNode head = new ListNode(0); // 设立头节点
       ListNode tail = head;
