@@ -55,20 +55,18 @@ public class ZuiXiaoDeKgeShuLcof {
      * @return
      */
     public int[] getLeastNumbers(int[] arr, int k) {
-      if (k == 0) return new int[0];
       if (arr == null || arr.length == 0) return arr;
-      for (int i = 0; i < k; i++) {
+      int[] res = new int[k];
+      for (int i = 0, h = 0; i < k; i++, h++) {
         for (int j = 0; j < arr.length - 1 - i; j++) {
-          // 比较相邻的元素，如果前面的数小于后面的数，就交换
           if (arr[j] < arr[j + 1]) {
             int temp = arr[j + 1];
             arr[j + 1] = arr[j];
             arr[j] = temp;
           }
         }
+        res[h] = arr[arr.length - h - 1];
       }
-      int[] res = new int[k];
-      System.arraycopy(arr, arr.length - k, res, 0, k);
       return res;
     }
   }
