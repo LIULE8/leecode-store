@@ -70,13 +70,12 @@ public class ZuiXiaoDeKgeShuLcof {
       if (k == 0) return res;
       // 大根堆
       PriorityQueue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1);
-      for (int i = 0; i < k; i++) {
-        heap.offer(arr[i]);
-      }
-      for (int i = k; i < arr.length; i++) {
-        if (heap.peek() > arr[i]) {
+      for (int num : arr) {
+        if (heap.size() < k) {
+          heap.offer(num);
+        } else if (heap.peek() > num) {
           heap.poll();
-          heap.offer(arr[i]);
+          heap.offer(num);
         }
       }
       for (int i = 0; i < k; i++) {
