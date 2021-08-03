@@ -24,7 +24,29 @@ public class TiHuanKongGeLcof {
 
   static class Solution {
     public String replaceSpace(String s) {
-      return method1(s);
+      //      return method1(s);
+      return method2(s);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 36.2 MB , 在所有 Java 提交中击败了 60.23% 的用户
+     *
+     * @param s
+     * @return
+     */
+    private String method2(String s) {
+      if (s == null || s.length() == 0) return s;
+      StringBuilder sb = new StringBuilder();
+      for (char c : s.toCharArray()) {
+        if (c == ' ') {
+          sb.append("%20");
+        } else {
+          sb.append(c);
+        }
+      }
+      return sb.toString();
     }
 
     /**
