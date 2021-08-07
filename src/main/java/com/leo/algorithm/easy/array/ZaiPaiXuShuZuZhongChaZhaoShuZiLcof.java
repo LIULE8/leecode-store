@@ -86,7 +86,7 @@ public class ZaiPaiXuShuZuZhongChaZhaoShuZiLcof {
       int l = 0;
       int r = nums.length - 1;
       while (l <= r) {
-        int mid = (l + r) >> 1;
+        int mid = l + ((r - l) >> 1);
         if (nums[mid] >= target) r = mid - 1;
         else if (nums[mid] < target) l = mid + 1;
       }
@@ -109,7 +109,7 @@ public class ZaiPaiXuShuZuZhongChaZhaoShuZiLcof {
       int r = nums.length - 1;
       int index = -1;
       while (l <= r) {
-        int mid = (l + r) >> 1;
+        int mid = l + ((r - l) >> 1);
         if (nums[mid] == target) {
           index = mid;
           break;
