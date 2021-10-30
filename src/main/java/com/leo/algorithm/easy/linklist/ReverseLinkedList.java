@@ -53,6 +53,36 @@ public class ReverseLinkedList {
   }
 
   static class Solution {
+
+    public ListNode reverseList(ListNode head) {
+      //      return method1(head);
+      return method2(head);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 38.2 MB , 在所有 Java 提交中击败了 59.01% 的用户
+     *
+     * @param head
+     * @return
+     */
+    private ListNode method2(ListNode head) {
+      // 边界校验
+      if (head == null || head.next == null) {
+        return head;
+      }
+      ListNode p = head;
+      ListNode newHead = null;
+      while (p != null) {
+        ListNode next = p.next;
+        p.next = newHead;
+        newHead = p;
+        p = next;
+      }
+      return newHead;
+    }
+
     /**
      * 执行用时 : 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
@@ -61,7 +91,7 @@ public class ReverseLinkedList {
      * @param head
      * @return
      */
-    public ListNode reverseList(ListNode head) {
+    private ListNode method1(ListNode head) {
       ListNode p = head;
       ListNode newHead = null;
       while (p != null) {
