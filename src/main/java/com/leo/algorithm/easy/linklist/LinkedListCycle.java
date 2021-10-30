@@ -27,7 +27,30 @@ public class LinkedListCycle {
     public boolean hasCycle(ListNode head) {
       //      return method1(head);
       //      return method2(head);
-      return method3(head);
+      //      return method3(head);
+      return method4(head);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 39.4 MB , 在所有 Java 提交中击败了 62.25% 的用户
+     *
+     * @param head
+     * @return
+     */
+    private boolean method4(ListNode head) {
+      if (head == null || head.next == null) {
+        return false;
+      }
+      ListNode first = head;
+      ListNode second = head;
+      while (first != null && first.next != null) {
+        first = first.next.next;
+        second = second.next;
+        if (first != null && first == second) return true;
+      }
+      return false;
     }
 
     /**
