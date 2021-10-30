@@ -53,6 +53,40 @@ public class RemoveNthNodeFromEndOfList {
 
   static class Solution {
 
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+      //      return method1(head, n);
+      return method2(head, n);
+    }
+
+    /**
+     * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
+     *
+     * <p>内存消耗： 36.5 MB , 在所有 Java 提交中击败了 27.29% 的用户
+     *
+     * @param head
+     * @param n
+     * @return
+     */
+    private ListNode method2(ListNode head, int n) {
+      // 边界问题
+      if (head == null) return head;
+      ListNode first = head;
+      ListNode second = head;
+      // 快指针先走N步
+      int i = 0;
+      while (first != null && i < n) {
+        first = first.next;
+        i++;
+      }
+      if (first == null) return head.next;
+      while (first.next != null) {
+        first = first.next;
+        second = second.next;
+      }
+      second.next = second.next.next;
+      return head;
+    }
+
     /**
      * 执行用时： 0 ms , 在所有 Java 提交中击败了 100.00% 的用户
      *
@@ -62,7 +96,7 @@ public class RemoveNthNodeFromEndOfList {
      * @param n
      * @return
      */
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    private ListNode method1(ListNode head, int n) {
       if (head == null) return head;
       ListNode fast = head;
       ListNode slow = head;
