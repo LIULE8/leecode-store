@@ -41,40 +41,57 @@
 
 package com.leo.algorithm.easy.stack;
 
-import java.util.Stack;
-
 public class MinStack {
 
-  private final Stack<Integer> stack;
+  private int[] items;
+  private int n = 1024;
+  private int count = 0;
 
-  /**
-   * 执行用时： 352 ms , 在所有 Java 提交中击败了 5.00% 的用户
-   *
-   * <p>内存消耗： 40.2 MB , 在所有 Java 提交中击败了 37.17% 的用户
-   */
   public MinStack() {
-    stack = new Stack<>();
+    items = new int[n];
   }
 
   public void push(int val) {
-    stack.add(val);
+    if (count == n) {
+      int[] tmp = new int[n * 2];
+      System.arraycopy(items, 0, tmp, 0, n);
+      items = tmp;
+      n = n * 2;
+    }
+    items[count++] = val;
   }
 
   public void pop() {
-    stack.pop();
+    if (count == 0) return;
+    count--;
   }
 
   public int top() {
-    return stack.peek();
+    if (count == 0) return -1;
+    return items[count - 1];
   }
 
   public int getMin() {
     int min = 0;
-    for (int j = 1; j < stack.size(); j++) {
-      if (stack.get(j) < stack.get(min)) {
-        min = j;
+    for (int i = 1; i < count; i++) {
+      if (items[i] < items[min]) {
+        min = i;
       }
     }
-    return stack.get(min);
+    return items[min];
+  }
+
+  public static void main(String[] args) {
+    MinStack minStack = new MinStack();
+    minStack.push(512);
+    minStack.push(-1024);
+    minStack.push(-1024);
+    minStack.push(512);
+    minStack.pop();
+    System.out.println(minStack.getMin());
+    minStack.pop();
+    System.out.println(minStack.getMin());
+    minStack.pop();
+    System.out.println(minStack.getMin());
   }
 }
