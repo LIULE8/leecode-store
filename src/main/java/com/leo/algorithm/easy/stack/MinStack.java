@@ -41,55 +41,75 @@
 
 package com.leo.algorithm.easy.stack;
 
+/**
+ * 执行用时： 4 ms , 在所有 Java 提交中击败了 99.78% 的用户
+ *
+ * <p>内存消耗： 40 MB , 在所有 Java 提交中击败了 73.70% 的用户
+ */
 public class MinStack {
 
   private int[] items;
-  private int n = 1024;
-  private int count = 0;
+  private int size;
+  private int minVal;
+  private int minCount;
 
   public MinStack() {
-    items = new int[n];
+    items = new int[100];
+    minVal = Integer.MAX_VALUE;
   }
 
   public void push(int val) {
-    if (count == n) {
-      int[] tmp = new int[n * 2];
-      System.arraycopy(items, 0, tmp, 0, n);
+    if (size == items.length) {
+      int[] tmp = new int[items.length + items.length];
+      System.arraycopy(items, 0, tmp, 0, items.length);
       items = tmp;
-      n = n * 2;
     }
-    items[count++] = val;
+    items[size++] = val;
+    if (val < minVal) {
+      minVal = val;
+      minCount = 1;
+    } else if (val == minVal) minCount++;
   }
 
   public void pop() {
-    if (count == 0) return;
-    count--;
+    int lastVal = items[--size];
+    if (lastVal == minVal && --minCount == 0) {
+      // 刷新min值
+      refreshMin();
+    }
   }
 
   public int top() {
-    if (count == 0) return -1;
-    return items[count - 1];
+    return items[size - 1];
   }
 
   public int getMin() {
-    int min = 0;
-    for (int i = 1; i < count; i++) {
-      if (items[i] < items[min]) {
-        min = i;
-      }
+    return minVal;
+  }
+
+  private void refreshMin() {
+    minVal = Integer.MAX_VALUE;
+    for (int i = 0; i < size; i++) {
+      minVal = Math.min(minVal, items[i]);
     }
-    return items[min];
+    minCount = 1;
   }
 
   public static void main(String[] args) {
     MinStack minStack = new MinStack();
-    minStack.push(512);
-    minStack.push(-1024);
-    minStack.push(-1024);
-    minStack.push(512);
+    minStack.push(2147483646);
+    minStack.push(2147483646);
+    minStack.push(2147483647);
     minStack.pop();
     System.out.println(minStack.getMin());
     minStack.pop();
+    System.out.println(minStack.getMin());
+    minStack.pop();
+    minStack.push(2147483647);
+    minStack.top();
+    System.out.println(minStack.getMin());
+    minStack.push(-2147483648);
+    minStack.top();
     System.out.println(minStack.getMin());
     minStack.pop();
     System.out.println(minStack.getMin());
