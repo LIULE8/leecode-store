@@ -67,11 +67,15 @@ public class BuddyStrings {
      *
      * <p>内存消耗： 38.6 MB , 在所有 Java 提交中击败了 71.93% 的用户
      *
-     * @param A
-     * @param B
+     * @param s
+     * @param goal
      * @return
      */
-    public boolean buddyStrings(String A, String B) {
+    public boolean buddyStrings(String s, String goal) {
+      return method1(s, goal);
+    }
+
+    private boolean method1(String A, String B) {
       if ("".equals(A) || "".equals(B) || A.length() != B.length()) return false;
       if (A.equals(B)) {
         Set<Character> set = new HashSet<>();
